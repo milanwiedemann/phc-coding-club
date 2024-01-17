@@ -1,0 +1,12 @@
+patient_id,address_id,start_date,end_date,address_type,rural_urban_classification,imd_rounded,msoa_code,has_postcode,care_home_is_potential_match,care_home_requires_nursing,care_home_does_not_require_nursing
+1,1,1900-01-01,,1,1,32400,E02000010,T,T,F,T
+2,1,1950-01-01,,1,1,22400,E02000011,T,F,,
+3,1,1960-01-01,2020-01-01,1,1,12400,E02000012,T,F,,
+3,1,2020-01-02,,1,1,12400,E02000013,T,T,F,T
+4,1,1970-01-01,,1,1,2400,E02000013,T,F,,
+5,1,1980-01-01,,1,1,400,E02000014,T,F,,
+6,1,1990-01-01,,1,1,1400,E02000014,T,F,,
+7,1,2000-01-01,,1,1,2400,E02000015,T,F,,
+8,1,2000-01-01,,1,1,3400,E02000015,T,F,,
+9,1,2021-01-01,,1,1,4400,E02000015,T,F,,
+11,1,2000-01-01,,1,1,4400,E02000015,T,F,,
