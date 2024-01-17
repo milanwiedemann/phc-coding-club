@@ -1,0 +1,16 @@
+patient_id,start_date,end_date,practice_pseudo_id,practice_stp,practice_nuts1_region_name
+1,2018-01-01,,1,1,region_practice1
+2,2010-01-01,2012-01-01,1,1,region_practice1
+2,2012-02-01,2018-01-01,2,1,region_practice2
+2,2018-01-02,,3,1,region_practice3
+3,2000-01-01,2019-01-01,2,2,region_practice2
+3,2019-02-01,2023-01-01,3,2,region_practice3
+3,2023-01-02,,4,2,region_practice4
+4,2018-01-01,,2,2,region_practice2
+5,2018-01-01,,2,2,region_practice2
+6,2018-01-01,,3,3,region_practice3
+7,2018-01-01,,3,3,region_practice3
+8,2018-01-01,,3,3,region_practice3
+9,2018-01-01,,3,3,region_practice3
+10,2018-01-01,,3,3,region_practice3
+11,2018-01-01,,3,3,region_practice3
