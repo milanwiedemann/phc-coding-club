@@ -1,11 +1,5 @@
 # Solutions for session 1
 
-## `renv`: Set-up reprodicuble project environment
-
-* Solution 1: Update all packages to the newest version
-  * Run: `renv::update()`
-  * Code changes: https://github.com/milanwiedemann/phc-coding-club/pull/2/commits/86ff3a599483a6715fbbfc7d8710e7197365161b
-
 ## `here`: Create paths relative to the top-level directory
 
 * Solution 2: Use the `here` package to replace `setwd()`
@@ -22,7 +16,7 @@
 ## `usethis`: Add licence to repository
 
 * Solution 5: Add MIT licence to this project repository
-  * Run: `renv::install("usethis")`
+  * Run: `install.packages("usethis")`
   * Run: `usethis::use_mit_license()`
   * Code changes: https://github.com/milanwiedemann/phc-coding-club/pull/2/commits/d76511fe7caacf648218baf56bcba3e0c441b319
 
