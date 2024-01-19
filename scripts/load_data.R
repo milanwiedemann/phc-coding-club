@@ -2,9 +2,6 @@
 library(readr)
 library(here)
 
-# Delete everything in current global environment
-rm(list = ls())
-
 # Load data
 patients <- read_csv(here("dummy_data", "patients.csv"),
   col_types = list(patient_id = "c")
