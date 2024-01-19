@@ -12,8 +12,10 @@
 > "Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread." This quote comes from [The tidyverse style guide](https://style.tidyverse.org/) and describes the main motivation behind code style.
 
 * Solution 2: Check the code style using `lintr`
+  * Run: `install.packages("lintr")`
   * Run: `lintr::lint_dir(".")`
 * Solution 3: Fix the code style using `styler`
+  * Run: `install.packages("styler")`
   * Run: `styler::style_dir(".")`
   * [Code changes](https://github.com/milanwiedemann/phc-coding-club/pull/9/commits/b3de6fad3439b69d81addfc06254bc400245f1ee)
 
