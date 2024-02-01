@@ -1,7 +1,7 @@
 # PHC Coding Club
 
-Coding Clubs are organised fortnightly, with alternating guided (_Guided Coding Club_) and open (_Open Coding Club_) sessions.
-During the guided sessions someone from the group introduces a new tool or topic and during the open sessions we discuss the previous sessions or just code together on our own projects.
+Coding Clubs are organised weekly, with alternating guided (_Guided Coding Club_) and open (_Open Coding Club_) sessions.
+During the _guided_ sessions someone from the group introduces a new tool or topic and during the _open_ sessions we discuss the previous sessions or just code together on our own projects.
 
 ## Guided sessions
 
@@ -9,8 +9,8 @@ During the guided sessions someone from the group introduces a new tool or topic
 | :---         | :---           | :--- | :--- |
 | Project-oriented workflow | 2024-01-18 | > [Workflow: scripts and projects](https://r4ds.hadley.nz/workflow-scripts.html#projects) <br/> > [Project-oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) | > [Exercises 1](exercises/01-exercises.md) <br/> > [Solutions 1](exercises/01-solutions.md) |
 | GitHub for academic research | 2024-02-15 | > [Happy Git and GitHub](https://happygitwithr.com/) <br/> > [Oh Shit, Git!?!](https://ohshitgit.com/) | > Exercises 2 <br/> > Solutions 2 |
+| Functions and loops | 2024-02-29 | > [Functions](https://r4ds.hadley.nz/functions) <br/> > [Iteration & Functions](https://psyteachr.github.io/reprores-v3/func.html) | > Exercises 4 <br/> > Solutions 4 |
 | Code review | 2024-03-14 | > [Tidyteam code review](https://code-review.tidyverse.org/) <br/> > [Code Review](https://psyteachr.github.io/posts/2022-11-21_riots-code-review.html) | > Exercises 3 <br/> > Solutions 3 |
-| Functions and loops | 2024-04-04 | > [Functions](https://r4ds.hadley.nz/functions) <br/> > [Iteration & Functions](https://psyteachr.github.io/reprores-v3/func.html) | > Exercises 4 <br/> > Solutions 4 |
 
 ## General resources
 
