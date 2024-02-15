@@ -15,6 +15,7 @@ During the _guided_ sessions someone from the group introduces a new tool or top
 ## General resources
 
 - **For new coders:**
+  - [Happy Git and GitHub for the useR](https://happygitwithr.com/) 
   - [R for Data Science (2e)](https://r4ds.hadley.nz/): Beginner friendly introduction to many R and data science topics with a lot of code examples and exercises
   - [psyTeachR](https://psyteachr.github.io/resources.html): Resources for teaching reproducible research using R from the psyTeachR team at the University of Glasgow
   - [Software development skills for health data researchers](https://informatics.bmj.com/content/29/1/e100488): Short introduction to software development skill (e.g., version control, testing, code review, ...) for researchers
