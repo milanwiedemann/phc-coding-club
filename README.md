@@ -21,6 +21,7 @@ During the _guided_ sessions someone from the group introduces a new tool or top
   - [Software development skills for health data researchers](https://informatics.bmj.com/content/29/1/e100488): Short introduction to software development skill (e.g., version control, testing, code review, ...) for researchers
   - [Software Carpentry](https://software-carpentry.org/lessons/index.html): Beginner friendly workshops for researchers, e.g., [R for Reproducible Scientific Analysis](https://swcarpentry.github.io/r-novice-gapminder/) or [Version Control with Git](https://swcarpentry.github.io/git-novice/)
   - [YaRrr! The Pirate's Guide to R](https://bookdown.org/ndphillips/YaRrr/)
+  - [R Programming for Statistics and Data Science](https://www.oreilly.com/videos/r-programming-for/9781789950298/): Online video course available for free to Oxford members
 
 - **For more experienced coders:**
   - [Advanced R (2e)](https://adv-r.hadley.nz/)
