@@ -7,10 +7,10 @@ During the _guided_ sessions someone from the group introduces a new tool or top
 
 | Session | Date | Background | Homework |
 | :---         | :---           | :--- | :--- |
-| Project-oriented workflow | 2025-??-?? | > [Workflow: scripts and projects](https://r4ds.hadley.nz/workflow-scripts.html#projects) <br/> > [Project-oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) | > [Exercises 1](exercises/01-exercises.md) <br/> > [Solutions 1](exercises/01-solutions.md) |
-| GitHub for academic research | 2025-??-?? | > [Happy Git and GitHub](https://happygitwithr.com/) <br/> > [Oh Shit, Git!?!](https://ohshitgit.com/) | > [Exercises 2](exercises/02-exercises.md) <br/> > Solutions 2 |
-| Functions and loops | 2025-??-?? | > [Functions](https://r4ds.hadley.nz/functions) <br/> > [Iteration & Functions](https://psyteachr.github.io/reprores-v3/func.html) | > [Exercises 3](exercises/03-exercises.md) <br/> > Solutions 3 |
-| Code review | TBC | > [Tidyteam code review](https://code-review.tidyverse.org/) <br/> > [Code Review](https://psyteachr.github.io/posts/2022-11-21_riots-code-review.html) | > Exercises 4 <br/> > Solutions 4 |
+| Working with data | 2025-??-?? | > [Workflow: scripts and projects](https://r4ds.hadley.nz/workflow-scripts.html#projects) <br/> > [Project-oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) | > [Exercises 1](exercises/01-exercises.md) <br/> > [Solutions 1](exercises/01-solutions.md) |
+| Running analyses and plotting | 2025-??-?? | > [Happy Git and GitHub](https://happygitwithr.com/) <br/> > [Oh Shit, Git!?!](https://ohshitgit.com/) | > [Exercises 2](exercises/02-exercises.md) <br/> > Solutions 2 |
+| Custom functions and loops | 2025-??-?? | > [Functions](https://r4ds.hadley.nz/functions) <br/> > [Iteration & Functions](https://psyteachr.github.io/reprores-v3/func.html) | > [Exercises 3](exercises/03-exercises.md) <br/> > Solutions 3 |
+| Using specialised packages | TBC | > [Tidyteam code review](https://code-review.tidyverse.org/) <br/> > [Code Review](https://psyteachr.github.io/posts/2022-11-21_riots-code-review.html) | > Exercises 4 <br/> > Solutions 4 |
 
 ## General resources
 
