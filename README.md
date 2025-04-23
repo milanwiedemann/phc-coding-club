@@ -16,11 +16,11 @@ During the _guided_ sessions someone from the group introduces a new tool or top
 
 If you are completely new to R or would like to quickly refresh your knowledge before attending your first session, we have prepared some resources for you.
 
-Sheet 1: The Very Basics of R for Data Analysis
+[Sheet 1: The Very Basics of R for Data Analysis](resources/Sheet1.Rmd)
 
-Sheet 1a: Basics of R (Appendices)
+[Sheet 1a: Basics of R (Appendices)](resources/Sheet1a.Rmd)
 
-Sheet 2: Statistical Tests, Models, and Charts in R
+[Sheet 2: Statistical Tests, Models, and Charts in R](resources/Sheet2.Rmd)
 
 ## General resources
 
