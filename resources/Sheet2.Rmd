@@ -1,0 +1,76 @@
+---
+title: "Sheet 2: Statistical tests, models, and charts in R"
+author: "José Boue"
+date: "2025-04-23"
+output: 
+  pdf_document:
+    toc: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 2.1: Tests
+
+## 2.1.1: *z*-test
+
+## 2.1.2: *t*-test
+
+## 2.1.3: Chi-squared test
+
+## 2.1.4: *F*-test
+
+## 2.1.5: Fisher's exact test
+
+## 2.1.6: Wald test
+
+## 2.1.7: Pearson correlation
+
+## 2.1.8: Spearman's rank correlation
+
+# 2.2: Models
+
+## 2.2.1: Linear regression
+
+## 2.2.2: Poisson regression
+
+### 2.2.2a: Conditional Poisson regression
+
+## 2.2.3: Logistic regression
+
+### 2.2.3a: Conditional logistic regression
+
+## 2.2.4: Cox regression
+
+## 2.2.5: Self-controlled case series
+
+## 2.2.6: Accelerated failure time
+
+## 2.2.7: LOESS regression
+
+## 2.2.8: Interrupted time series
+
+# 2.3: Charts
+
+## 2.3.1: Scatterplot
+
+## 2.3.2: Bar plot
+
+## 2.3.3: Box plot
+
+## 2.3.4: Histogram
+
+## 2.3.5: Pie chart
+
+## 2.3.6: Radar chart
+
+## 2.3.7: Q-Q plot
+
+## 2.3.8: Forest plot
+
+## 2.3.9: Kaplan-Meier plot
+
+## 2.3.10: Choropleth map
+
+## 2.3.11: Cartogram
