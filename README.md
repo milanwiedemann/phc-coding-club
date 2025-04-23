@@ -12,6 +12,16 @@ During the _guided_ sessions someone from the group introduces a new tool or top
 | TBC | 2025-??-?? | > [Functions](https://r4ds.hadley.nz/functions) <br/> > [Iteration & Functions](https://psyteachr.github.io/reprores-v3/func.html) | > [Exercises 3](exercises/03-exercises.md) <br/> > Solutions 3 |
 | TBC | TBC | > [Tidyteam code review](https://code-review.tidyverse.org/) <br/> > [Code Review](https://psyteachr.github.io/posts/2022-11-21_riots-code-review.html) | > Exercises 4 <br/> > Solutions 4 |
 
+## Optional pre-session reading
+
+If you are completely new to R or would like to quickly refresh your knowledge before attending your first session, we have prepared some resources for you.
+
+Sheet 1: The Very Basics of R for Data Analysis
+
+Sheet 1a: Basics of R (Appendices)
+
+Sheet 2: Statistical Tests, Models, and Charts in R
+
 ## General resources
 
 - **For new coders:**
