@@ -1,0 +1,234 @@
+Session 1a: Basics of R (Appendices)
+================
+José Boue
+2025-04-14
+
+- [Appendix 1: Extra arguments for read.table() and
+  read.csv()](#appendix-1-extra-arguments-for-readtable-and-readcsv)
+- [Appendix 2: Extra arguments for
+  rep()](#appendix-2-extra-arguments-for-rep)
+- [Appendix 3: The seq() function](#appendix-3-the-seq-function)
+- [Appendix 4: The subset() function](#appendix-4-the-subset-function)
+- [Appendix 5: Lists](#appendix-5-lists)
+- [Appendix 6: Inf and NaN](#appendix-6-inf-and-nan)
+- [Appendix 7: The stringr package](#appendix-7-the-stringr-package)
+- [Appendix 8: While and repeat
+  loops](#appendix-8-while-and-repeat-loops)
+- [Appendix 9: Unfulfilled promises](#appendix-9-unfulfilled-promises)
+- [Appendix 10: Dates](#appendix-10-dates)
+
+## Appendix 1: Extra arguments for read.table() and read.csv()
+
+Sometimes, when working with categorical data you will want the relevant
+variables to imported into R as **factors** rather than basic strings.
+You can do this by setting the argument **stringsAsFactors** to TRUE (by
+default it is FALSE). A factor is simply R’s name for a categorical
+variable, where there are only a set number of values (levels) it can
+take that may or may not be ordered. When you import a variable as a
+factor, all values that R sees are turned into its levels. Be careful,
+as if a particular value is not present in the table R won’t add it as a
+level.
+
+The **sep** argument is what determines the character that R reads as
+separating data values in the file. By default, it is empty in
+read.table(), which means any whitespace character (tab, space, newline,
+carriage return) will be read as a separator. You can set it to a comma
+in order to read .csv files without using read.csv(), or a tab (“\t”) to
+read tab-delimited files. The read.csv() function naturally has the
+comma as its default separator. In some European countries the comma is
+used in place of the decimal point and the semicolon as a separator, so
+be sure to change the sep argument accordingly if you’re working with
+files from Europe.
+
+## Appendix 2: Extra arguments for rep()
+
+The rep() function actually has three possible arguments that can come
+after the vector you want to replicate. The first is **times**, which
+just determines how many times you repeat it. By default, this is the
+argument that any number coming after the vector will be fed into. If
+you want to access the other two arguments, you need to spell them out.
+The other two arguments are **each**, which repeats each individual
+element of the vector for the specified number of times in sequence, and
+**length.out**, which repeats the whole vector until a specified length
+is reached (it can cut it off in order to do so). Let’s see what the
+code looks like:
+
+``` r
+my_vector <- c(1,2,3)
+rep(my_vector, each=2)
+```
+
+    ## [1] 1 1 2 2 3 3
+
+``` r
+rep(my_vector, length.out=7)
+```
+
+    ## [1] 1 2 3 1 2 3 1
+
+## Appendix 3: The seq() function
+
+Like the : operator, seq() defines a vector that contains a sequence of
+numbers. It has four arguments: **from**, **to**, **by**, and
+**length.out**. The first two determine where the sequence starts and
+ends, while **by** determines the difference between successive members
+of the sequence and **length.out** the length the sequence should have.
+Only one of the last two arguments should be specified, as the value of
+one uniquely determines the other. There are variants of seq() that
+require fewer arguments, such as **seq_along()**, which when given a
+vector returns a sequence from 1 to its length. This is not exactly the
+same as using :, because 1:0 produces a vector equal to c(1,0) instead
+of a zero-length vector. The seq_along() function is useful for avoiding
+errors, or so the R style guide tells me.
+
+## Appendix 4: The subset() function
+
+This function can be applied to vectors, matrices, or data frames. In
+its simplest form, it takes as its second argument a logical expression
+that indicates which elements to keep. This is mostly equivalent to
+using square brackets with a logical expression inside, although unlike
+that method subset() treats missing entries as FALSE. If you use
+subset() on a matrix or data frame, you can specify another argument,
+**select**, that lets you choose which columns to keep by referencing
+their names. You can put a - in front to drop them instead.
+
+## Appendix 5: Lists
+
+Lists may seem intimidating, but they’re not actually that difficult to
+use. They can take up a lot of space, however. The way to generate a
+list is much the same as for a vector, only instead of c() you use the
+**list()** function. You can also name each element of your list like
+you would do with a data frame. Appending an object to a list is done
+using the c() function, but you need to be careful when doing this as
+mixing lists and vectors can lead to unintended behaviour. For best
+results, turn the object you want to add into a length-1 list before
+using c().
+
+Extracting single elements from a list is done using the **double square
+brackets \[\[\]\]**. You can use the single square brackets as well, but
+this creates a list of length 1 that contains the object you want rather
+than extracting the object itself. If you want to extract the first
+element of a vector which is itself the first element of a list, the
+syntax would look like this:
+
+``` r
+my_list[[1]][1]
+```
+
+If your list elements are named, you can also use the dollar sign
+operator \$ to reference them like you would with a data frame. You can
+actually use the double square brackets with data frames as well because
+a data frame is essentially a two-dimensional list, but this is usually
+not necessary.
+
+## Appendix 6: Inf and NaN
+
+If you have used another programming language before, you probably know
+what Inf and NaN are and the difference between them. If not, don’t
+worry. Inf simply means **“infinity”**, which often is not actually
+infinite but shorthand for “bigger than any number R is capable of
+calculating”. For example, attempting to divide a number by zero will
+return Inf, but you also might get (0,Inf) as a confidence interval if
+your statistical model takes too long to converge. -Inf is the same but
+negative. NaN stands for **“Not a Number”**, which means that if a
+calculation returns it the answer likely doesn’t even exist. For
+example, attempting to divide 0 by 0 or taking the tangent of $\pi/2$
+will produce NaN. R will give you a warning message whenever NaN shows
+up, as when this happens something has usually gone badly wrong.
+
+While calculations involving NaN are inadvisable to perform, Inf and
+-Inf are relatively well-behaved and can be used in ordinary code
+without causing issues. For example, the **cut()** function will convert
+a numeric vector into a factor by binning, where the bins are specified
+using the **breaks** argument. If you want the first or last bin to be
+open-ended (or both!), which is common for certain variables such as
+age, you can specify Inf as the upper limit or -Inf as the lower one.
+You may not expect that to work, but it does!
+
+## Appendix 7: The stringr package
+
+Unlike traditional programming languages, base R does not have an easy
+way to manipulate strings. The most basic objects that R is designed to
+work with are vectors and matrices which are typically numeric, so it
+makes up for its strength in dealing with these with a weakness in
+dealing with strings. The stringr package is designed to address this
+issue by introducing simple functions for manipulating strings, the most
+useful of which in my opinion is **str_glue()**. This function can
+concatenate multiple input strings into a new string rather than a
+vector, and adding the **.sep** argument allows you to choose a
+separator to place in between them. But the real magic of str_glue() is
+its ability to insert variable values directly into strings. If you
+enclose the name of a variable with curly brackets {}, str_glue() will
+render it as that variable’s value. Therefore, you can change an input
+or output string simply by changing a variable rather than having to
+fiddle around with the string itself.
+
+## Appendix 8: While and repeat loops
+
+**While** loops are very close to if statements in their syntax. They
+also use a logical expression as their condition, but can evaluate it
+more than once. If the condition is TRUE, the loop will execute the code
+contained in its body, then after this has finished it will check the
+condition again. If it is still TRUE, the body will execute again,
+otherwise the loop will terminate. Unlike for loops, while loops can
+potentially run forever without halting, which means they require more
+caution to use. In order to terminate a while loop, you will need to
+either include code in the body that can set the condition to FALSE, or
+use the **break** command. This command terminates the loop it’s in, and
+passes to the next line of code below it. Here is an example of a while
+loop that uses an if statement to decide whether to break:
+
+``` r
+while(n>0){
+  if(is.integer(n)){
+    n <- n-1
+  }
+  else{break}
+}
+```
+
+This code is designed to take a positive integer n and decrement it by 1
+repeatedly until it reaches 0. If n is not an integer, the loop will
+break instead of passing an invalid input.
+
+A **repeat** loop is identical to a while loop, but with no condition:
+the only way to terminate it is by manually breaking it. You can achieve
+the same effect by writing while(TRUE).
+
+## Appendix 9: Unfulfilled promises
+
+So far, it has been stated that an empty data frame can easily be filled
+using a loop, the read.table() and read.csv() functions can be looped to
+import multiple files without much effort, and that str_glue() is
+excellent for modifying input strings. No examples for any of these have
+been given, because it is best to demonstrate them all together.
+Consider a folder called big_folder containing files named file_1.csv,
+file_2.csv, and so on up to file_100.csv. Importing all of these files
+and combining them into a single data frame, assuming that they all have
+the same number of columns, is not nearly as onerous as it would appear.
+All that is needed is to create an empty data frame, then write a loop
+that binds each file onto it in succession:
+
+``` r
+my_df <- data.frame()
+for(i in 1:100){
+  my_df <- rbind(my_df, read.csv(str_glue("C:/Users/me/Documents/big_folder/file_{i}.csv")))
+}
+```
+
+## Appendix 10: Dates
+
+There are no references to dates in the main document, but I figure
+they’re important enough to include here anyway. Under the hood, R
+stores a date as a number of days since the 1st of January 1970, with
+earlier dates than that being negative. You can choose which format R
+displays dates in, but the preferred one is yyyy-mm-dd. You can perform
+some basic mathematical operations with dates. Adding a number to a date
+produces the date that number of days later, and subtracting it produces
+the date that number of days earlier. You can also subtract one date
+from another to produce an object known as a **difftime**. A difftime is
+simply a number of days with no index date, meaning that you can now add
+them together and even multiply and divide them by numeric vectors. Most
+functions won’t accept difftimes or dates when they expect numbers,
+though, so if you’re using time-series data you may need to convert them
+to standard numeric objects before running certain models.
