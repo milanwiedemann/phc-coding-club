@@ -18,7 +18,7 @@ If you are completely new to R or would like to quickly refresh your knowledge b
 
 [Sheet 1: The Very Basics of R for Data Analysis](resources/Sheet1.md)
 
-[Sheet 1a: Basics of R (Appendices)](resources/Sheet1a.Rmd)
+[Sheet 1a: Basics of R (Appendices)](resources/Sheet1a.md)
 
 [Sheet 2: Statistical Tests, Models, and Charts in R](resources/Sheet2.Rmd)
 
