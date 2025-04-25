@@ -1,7 +1,5 @@
 Session 1a: Basics of R (Appendices)
 ================
-José Boue
-2025-04-14
 
 - [Appendix 1: Extra arguments for read.table() and
   read.csv()](#appendix-1-extra-arguments-for-readtable-and-readcsv)
