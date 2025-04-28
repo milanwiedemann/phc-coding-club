@@ -1,7 +1,5 @@
 Sheet 2: Statistical tests, models, and charts in R
 ================
-José Boue
-2025-04-28
 
 - [2.1: Tests](#21-tests)
   - [2.1.1: *z*-test](#211-z-test)
