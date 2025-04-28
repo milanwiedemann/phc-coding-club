@@ -20,7 +20,7 @@ If you are completely new to R or would like to quickly refresh your knowledge b
 
 [Sheet 1a: Basics of R (Appendices)](resources/Sheet1a.md)
 
-[Sheet 2: Statistical Tests, Models, and Charts in R](resources/Sheet2.Rmd)
+[Sheet 2: Statistical Tests, Models, and Charts in R](resources/Sheet2.md)
 
 ## General resources
 
