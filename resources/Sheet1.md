@@ -1,7 +1,5 @@
 Sheet 1: The Very Basics of R for Data Analysis
 ================
-José Boue
-2025-04-23
 
 - [1.1: What is R?](#11-what-is-r)
 - [1.2: What isn’t R?](#12-what-isnt-r)
