@@ -1,5 +1,7 @@
 Sheet 1: The Very Basics of R for Data Analysis
 ================
+José Boue
+2025-05-30
 
 - [1.1: What is R?](#11-what-is-r)
 - [1.2: What isn’t R?](#12-what-isnt-r)
@@ -106,6 +108,24 @@ s <- "Hello World!"
 b <- TRUE
 ```
 
+What do you do if you decide you don’t need a variable any more and want
+to get rid of it entirely, rather than overwrite its value with
+something else? There is a special function for that: **rm()**, which is
+short for **remove**. When it is given the name of any R object
+currently in the environment, it does just that. We will see more
+advanced uses of rm() in the appendix.
+
+``` r
+mistake <- "This variable was a mistake."
+rm(mistake)
+exists("mistake")
+```
+
+    ## [1] FALSE
+
+Note the use of the exists() function to determine if an object of the
+provided name is present in the environment.
+
 ## 1.5: How do you import data from a file?
 
 Most of the time, you will be given data for analysis in the form of a
@@ -118,9 +138,10 @@ it to you not to do that. Excel files also have a hard limit of
 worked with big data. Big data is BIG.
 
 There are two ways to import a data file into R. The first is by
-clicking the **“import dataset”** button just above the environment,
-choosing the file type you want, and then navigating to the file in the
-Explorer window. This is the most “SPSS-like” thing that R lets you do.
+clicking the **“import dataset”** button just above the environment
+window, choosing the file type you want, and then navigating to the file
+in the Explorer window. This is the most “SPSS-like” thing that R lets
+you do.
 
 The second way is by using the console. R has built-in functions for
 importing files, which are called read.table and read.csv. These
@@ -151,6 +172,20 @@ sequence (or else you’ll get very bored of opening the menu again and
 again). We’ll learn more about how you can eliminate this kind of busy
 work when we look at control flow.
 
+A word of caution: saving data in the environment is not the same as
+saving it as a file on your computer. If you want to do the latter so
+you can easily load it again where you left off, you need to click the
+floppy disk icon above the environment and save it as an .RData file.
+Unlike .csv or .txt files, .RData files can contain multiple data sets,
+as well as any variables or functions you’ve created in order to
+manipulate them. You can load an .RData file into your environment by
+clicking the folder icon next to the save icon.
+
+There are separate icons for saving and loading above the source window,
+which is where your R scripts live. Just be sure to remember that saving
+or loading an R script file (with extension .R) will not do the same for
+its associated data!
+
 ## 1.6: How do you manipulate your data?
 
 Once you have imported your file, it is stored in R as an object known
@@ -159,10 +194,10 @@ as a **data frame**. A data frame is basically a fancier version of a
 What is a vector, you might ask?
 
 A single-valued variable, such as x from before, is known as a
-**scalar**. Vectors in R are formed using a special function, c(), which
-**concatenates** (hence the name) any number of scalars of the same type
-(numeric, character, or logical) into a vector. Here’s how you might do
-it:
+**scalar**. Vectors in R are formed using a special function, **c()**,
+which **concatenates** (hence the name) any number of scalars of the
+same type (numeric, character, or logical) into a vector. Here’s how you
+might do it:
 
 ``` r
 y <- 2
@@ -244,8 +279,8 @@ Aside from rep(), there is another common method for quickly generating
 vectors of arbitrary length. If you want to make a numeric sequence
 rather than a simple repetition of the same few elements, you can use
 the **:** operator. Simply typing n:m, where n and m are any integers,
-makes a vector of all integers between n and m inclusive (obviously, if
-n is more than m it won’t work).
+makes a vector of all integers between n and m inclusive (if n is more
+than m it will output them in reverse).
 
 There is a function that does the same thing as : but allows for more
 options called **seq()**, which we will also look at in the appendix.

@@ -1,76 +1,247 @@
 ---
 title: "Sheet 2: Statistical tests, models, and charts in R"
 author: "José Boue"
-date: "2025-04-23"
+date: "2025-04-28"
 output: 
-  pdf_document:
+  github_document:
     toc: TRUE
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
 ```
+
+All functions in this document are assumed to require the **stats** package, which is built-in to current versions of R and doesn't need to be manually installed.
 
 # 2.1: Tests
 
+If a function has an argument "alternative", this can be "two.sided", "less", or "greater".
+
 ## 2.1.1: *z*-test
+
+```{r ztest}
+pnorm(mu, mean=mu_0, sd=s) #one-sided
+```
 
 ## 2.1.2: *t*-test
 
+```{r ttest}
+t.test(x, alternative, mu) #one-sample
+t.test(x, y, alternative, mu_diff) #two-sample
+t.test(x, y, alternative, mu_diff, paired=TRUE) #two-sample, paired
+```
+
 ## 2.1.3: Chi-squared test
+
+```{r chisq}
+chisq.test(x, p) #one-way table with probabilities
+chisq.test(x, y) #two-way table as two vectors
+chisq.test(M) #two-way table as a matrix
+```
 
 ## 2.1.4: *F*-test
 
+```{r ftest}
+pf(v, df1, df2) #one-sided
+```
+
 ## 2.1.5: Fisher's exact test
 
-## 2.1.6: Wald test
+```{r fisher}
+fisher.test(x, y, alternative) #inputs are two vectors
+fisher.test(M, alternative) #input is a matrix
+```
+## 2.1.6: Kruskal-Wallis test
+
+```{r kruskal}
+kruskal.test(x, g) #vector with groupings
+kruskal.test(L) #list of vectors
+```
 
 ## 2.1.7: Pearson correlation
 
+```{r pearson}
+cor.test(x, y, alternative, method="pearson")
+```
+
 ## 2.1.8: Spearman's rank correlation
+
+```{r spearman}
+cor.test(x, y, alternative, method="spearman")
+```
+
+## 2.1.9: Wilcoxon signed-rank test
+
+```{r wilcox}
+wilcox.test(x, mu, alternative) #one-sample test
+wilcox.test(x, y, mu, alternative) #two-sample test
+wilcox.test(x, y, mu, alternative, paired=TRUE) #two-sample paired test
+```
+
+## 2.1.10: Kolmogorov-Smirnov test
+
+```{r kstest}
+ks.test(x, y, alternative) #two-sample test
+ks.test(x, cdf, alternative) #one-sample test
+```
 
 # 2.2: Models
 
+If a variable var_i is included as an argument, this is shorthand for "var_1 + var_2 + var_3 + ... + var_n" for an arbitrary n.
+
 ## 2.2.1: Linear regression
+
+```{r linreg}
+lm(y ~ x_i, data)
+```
 
 ## 2.2.2: Poisson regression
 
-### 2.2.2a: Conditional Poisson regression
+```{r poisson}
+glm(y ~ x_i, family="poisson", data)
+```
+
+### 2.2.2a: Conditional Poisson regression (untested)
+
+Requires **acp** package.
+
+```{r cpoisson}
+acp(y ~ x_i, data, p, q, family="poisson")
+```
 
 ## 2.2.3: Logistic regression
 
+```{r logit}
+glm(y ~ x_i, family="binomial", data)
+```
+
 ### 2.2.3a: Conditional logistic regression
+
+Requires **survival** package.
+
+```{r clogit}
+clogit(y ~ x_i, data)
+```
 
 ## 2.2.4: Cox regression
 
+Requires **survival** package.
+
+```{r coxreg}
+coxph(Surv(t,y) ~ x_i, data)
+```
+
 ## 2.2.5: Self-controlled case series
+
+Requires **SCCS** package.
+
+```{r sccs}
+#Basic model, dose-independent exposure
+standardsccs(event ~ adrug[,1], indiv, astart, aend, aevent, adrug, aedrug, data)
+#Dose-dependent exposure
+standardsccs(event ~ adrug_i, indiv, start, aend, aevent, adrug, aedrug, data)
+#Age effect
+standardsccs(event ~ adrug[,1] + age, indiv, astart, aend, adrug, aedrug, agegrp, dob, data)
+#Seasonal effect
+standardsccs(event ~ adrug[,1] + season, indiv, astart, aend, adrug, aedrug, seasongrp, dob, data)
+#With washouts and/or pre-exposures
+standardsccs(event ~ adrug[,1], indiv, astart, aend, aevent, adrug, aedrug, expogrp, washout, data)
+```
 
 ## 2.2.6: Accelerated failure time
 
+Requires **survival** or **eha** package.
+
+```{r aft}
+survreg(Surv(t,y) ~ x_i, data, id, dist) #survival package version
+aftreg(Surv(t,y) ~ x_i, data, id, dist) #eha package version
+```
+
 ## 2.2.7: LOESS regression
 
-## 2.2.8: Interrupted time series
+```{r loessreg}
+loess(y ~ x_i, data)
+```
 
 # 2.3: Charts
 
+No purely cosmetic arguments are included here, only ones that affect how the data is interpreted.
+
 ## 2.3.1: Scatterplot
+
+```{r scatter}
+plot(x, y, type)
+```
 
 ## 2.3.2: Bar plot
 
+```{r barchart}
+barplot(height=v, width) #simple bar plot, v is a vector
+barplot(height=M, width) #juxtaposed bar plot, M is a matrix
+barplot(height=M, width, beside=FALSE) #stacked bar plot
+```
+
 ## 2.3.3: Box plot
+
+```{r box}
+boxplot(y ~ g_i, data)
+```
 
 ## 2.3.4: Histogram
 
+```{r histogram}
+hist(x, breaks, right)
+```
+
 ## 2.3.5: Pie chart
+
+```{r piechart}
+pie(x)
+```
 
 ## 2.3.6: Radar chart
 
+```{r radar}
+stars(x, full, locations)
+```
+
 ## 2.3.7: Q-Q plot
+
+```{r qq}
+qqnorm(y) #Normal distribution Q-Q plot
+qqplot(x, y) #Generic Q-Q plot
+```
 
 ## 2.3.8: Forest plot
 
+Requires **forestploter** package.
+
+```{r forest}
+plot(forest(data, est, lower, upper, sizes, ci_column, ref_line))
+```
+
 ## 2.3.9: Kaplan-Meier plot
+
+Requires **survival** package.
+
+```{r kmplot}
+plot(survfit(y ~ x, data))
+```
 
 ## 2.3.10: Choropleth map
 
+Requires **sf** package. Other packages optional.
+
+```{r choropleth}
+plot(shapefile[,"var_name"])
+```
+
 ## 2.3.11: Cartogram
+
+Requires **cartogram** package. Other packages optional.
+
+```{r cartograms}
+plot(cartogram_cont(shapefile, weight)) #contiguous cartogram (shape-distorting)
+plot(cartogram_ncont(shapefile, weight)) #non-contiguous cartogram (shape-preserving, but leaves gaps)
+plot(cartogram_dorling(shapefile, weight)) #Dorling cartogram (represents regions as circles)
+```

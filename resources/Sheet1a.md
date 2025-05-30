@@ -1,19 +1,24 @@
 Session 1a: Basics of R (Appendices)
 ================
+José Boue
+2025-05-30
 
 - [Appendix 1: Extra arguments for read.table() and
   read.csv()](#appendix-1-extra-arguments-for-readtable-and-readcsv)
-- [Appendix 2: Extra arguments for
-  rep()](#appendix-2-extra-arguments-for-rep)
-- [Appendix 3: The seq() function](#appendix-3-the-seq-function)
-- [Appendix 4: The subset() function](#appendix-4-the-subset-function)
-- [Appendix 5: Lists](#appendix-5-lists)
-- [Appendix 6: Inf and NaN](#appendix-6-inf-and-nan)
-- [Appendix 7: The stringr package](#appendix-7-the-stringr-package)
-- [Appendix 8: While and repeat
-  loops](#appendix-8-while-and-repeat-loops)
-- [Appendix 9: Unfulfilled promises](#appendix-9-unfulfilled-promises)
-- [Appendix 10: Dates](#appendix-10-dates)
+- [Appendix 2: Writing to a .txt or .csv
+  file](#appendix-2-writing-to-a-txt-or-csv-file)
+- [Appendix 3: Extra arguments for
+  rep()](#appendix-3-extra-arguments-for-rep)
+- [Appendix 4: The seq() function](#appendix-4-the-seq-function)
+- [Appendix 5: The subset() function](#appendix-5-the-subset-function)
+- [Appendix 6: Lists](#appendix-6-lists)
+- [Appendix 7: Inf and NaN](#appendix-7-inf-and-nan)
+- [Appendix 8: The stringr package](#appendix-8-the-stringr-package)
+- [Appendix 9: Advanced uses of rm()](#appendix-9-advanced-uses-of-rm)
+- [Appendix 10: While and repeat
+  loops](#appendix-10-while-and-repeat-loops)
+- [Appendix 11: Unfulfilled promises](#appendix-11-unfulfilled-promises)
+- [Appendix 12: Dates](#appendix-12-dates)
 
 ## Appendix 1: Extra arguments for read.table() and read.csv()
 
@@ -38,7 +43,16 @@ used in place of the decimal point and the semicolon as a separator, so
 be sure to change the sep argument accordingly if you’re working with
 files from Europe.
 
-## Appendix 2: Extra arguments for rep()
+## Appendix 2: Writing to a .txt or .csv file
+
+Like read.table() and read.csv(), there also exist **write.table()** and
+**write.csv()** functions. These functions take a data frame and write
+it to a specified file path. Other arguments include whether character
+columns are quoted, the separator to use (write.table only), whether row
+and column names are to be included in the file, and the string to use
+to denote missing values.
+
+## Appendix 3: Extra arguments for rep()
 
 The rep() function actually has three possible arguments that can come
 after the vector you want to replicate. The first is **times**, which
@@ -64,7 +78,7 @@ rep(my_vector, length.out=7)
 
     ## [1] 1 2 3 1 2 3 1
 
-## Appendix 3: The seq() function
+## Appendix 4: The seq() function
 
 Like the : operator, seq() defines a vector that contains a sequence of
 numbers. It has four arguments: **from**, **to**, **by**, and
@@ -79,7 +93,7 @@ same as using :, because 1:0 produces a vector equal to c(1,0) instead
 of a zero-length vector. The seq_along() function is useful for avoiding
 errors, or so the R style guide tells me.
 
-## Appendix 4: The subset() function
+## Appendix 5: The subset() function
 
 This function can be applied to vectors, matrices, or data frames. In
 its simplest form, it takes as its second argument a logical expression
@@ -90,7 +104,7 @@ subset() on a matrix or data frame, you can specify another argument,
 **select**, that lets you choose which columns to keep by referencing
 their names. You can put a - in front to drop them instead.
 
-## Appendix 5: Lists
+## Appendix 6: Lists
 
 Lists may seem intimidating, but they’re not actually that difficult to
 use. They can take up a lot of space, however. The way to generate a
@@ -119,7 +133,7 @@ actually use the double square brackets with data frames as well because
 a data frame is essentially a two-dimensional list, but this is usually
 not necessary.
 
-## Appendix 6: Inf and NaN
+## Appendix 7: Inf and NaN
 
 If you have used another programming language before, you probably know
 what Inf and NaN are and the difference between them. If not, don’t
@@ -143,7 +157,7 @@ open-ended (or both!), which is common for certain variables such as
 age, you can specify Inf as the upper limit or -Inf as the lower one.
 You may not expect that to work, but it does!
 
-## Appendix 7: The stringr package
+## Appendix 8: The stringr package
 
 Unlike traditional programming languages, base R does not have an easy
 way to manipulate strings. The most basic objects that R is designed to
@@ -151,17 +165,73 @@ work with are vectors and matrices which are typically numeric, so it
 makes up for its strength in dealing with these with a weakness in
 dealing with strings. The stringr package is designed to address this
 issue by introducing simple functions for manipulating strings, the most
-useful of which in my opinion is **str_glue()**. This function can
-concatenate multiple input strings into a new string rather than a
-vector, and adding the **.sep** argument allows you to choose a
-separator to place in between them. But the real magic of str_glue() is
-its ability to insert variable values directly into strings. If you
-enclose the name of a variable with curly brackets {}, str_glue() will
-render it as that variable’s value. Therefore, you can change an input
-or output string simply by changing a variable rather than having to
-fiddle around with the string itself.
+useful of which in my opinion is **str_glue()**.
 
-## Appendix 8: While and repeat loops
+This function can concatenate multiple input strings into a new string
+rather than a vector, and adding the **.sep** argument allows you to
+choose a separator to place in between them. But the real magic of
+str_glue() is its ability to insert variable values directly into
+strings. If you enclose the name of a variable with curly brackets {},
+str_glue() will render it as that variable’s value. Therefore, you can
+change an input or output string simply by changing a variable rather
+than having to fiddle around with the string itself.
+
+There are many other nice functions in the stringr package, but most of
+them make use of **regular expressions**. This is a topic which is too
+big and too complex to fit in this appendix, so expect to see an entire
+sheet dealing with it.
+
+## Appendix 9: Advanced uses of rm()
+
+Although rm() was one of the earliest things you encountered in the main
+document, its more advanced options have been left relatively late here,
+as you will need to read the preceding appendices to understand them. If
+you want to remove multiple objects at once, the most basic way to do
+this is to pass a vector of their names. There are two ways to do this:
+
+``` r
+rm(var1,var2,var3)
+rm(list=c(var1, var2, var3))
+```
+
+Note that you if you’re not writing out the names of the variables in
+full, you will need to use the **list** argument rather than the
+default. The list argument is useful for removing a pre-defined vector
+of variables to save time writing them out.
+
+If you have a lot of variables you need to get rid of, or if their names
+are quite long, any method that involves listing them all in full is
+inconvenient. You can make life easier for yourself using another
+special function, **ls()**. When run with no argument, this returns a
+vector of the names of all objects in the environment, so the following
+code will clear it completely:
+
+``` r
+rm(list=ls())
+```
+
+You can do the same thing by clicking the broom icon above the
+environment, which is better because it asks you to confirm before
+deleting everything. Also, putting the above line in your actual code
+file is a very bad idea, as it can give anyone else who runs your code a
+very nasty surprise if they’re not expecting all their data to get nuked
+without warning. If you must run it, do it from the console.
+
+However, ls() is very powerful when used with a bit more finesse. It has
+an argument, **pattern**, which can take an ordinary string or, if
+you’re feeling brave, a regular expression. To show you how it works,
+the following code will remove all objects that have the substring “var”
+in their names, achieving the same effect as the basic code you saw
+earlier:
+
+``` r
+rm(list=ls(pattern="var"))
+```
+
+Of course, you need to be smart with naming your objects if you want to
+make full use of this.
+
+## Appendix 10: While and repeat loops
 
 **While** loops are very close to if statements in their syntax. They
 also use a logical expression as their condition, but can evaluate it
@@ -181,7 +251,7 @@ while(n>0){
   if(is.integer(n)){
     n <- n-1
   }
-  else{break}
+  else break
 }
 ```
 
@@ -190,10 +260,11 @@ repeatedly until it reaches 0. If n is not an integer, the loop will
 break instead of passing an invalid input.
 
 A **repeat** loop is identical to a while loop, but with no condition:
-the only way to terminate it is by manually breaking it. You can achieve
-the same effect by writing while(TRUE).
+the only way to terminate it is by manually breaking it. If it is part
+of a function, you can break it with a return() command. You can achieve
+the same effect as a repeat loop by writing while(TRUE).
 
-## Appendix 9: Unfulfilled promises
+## Appendix 11: Unfulfilled promises
 
 So far, it has been stated that an empty data frame can easily be filled
 using a loop, the read.table() and read.csv() functions can be looped to
@@ -214,7 +285,7 @@ for(i in 1:100){
 }
 ```
 
-## Appendix 10: Dates
+## Appendix 12: Dates
 
 There are no references to dates in the main document, but I figure
 they’re important enough to include here anyway. Under the hood, R

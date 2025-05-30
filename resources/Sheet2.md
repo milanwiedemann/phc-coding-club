@@ -1,5 +1,7 @@
 Sheet 2: Statistical tests, models, and charts in R
 ================
+José Boue
+2025-04-28
 
 - [2.1: Tests](#21-tests)
   - [2.1.1: *z*-test](#211-z-test)
@@ -24,8 +26,7 @@ Sheet 2: Statistical tests, models, and charts in R
   - [2.2.4: Cox regression](#224-cox-regression)
   - [2.2.5: Self-controlled case
     series](#225-self-controlled-case-series)
-  - [2.2.6: Accelerated failure time
-    (untested)](#226-accelerated-failure-time-untested)
+  - [2.2.6: Accelerated failure time](#226-accelerated-failure-time)
   - [2.2.7: LOESS regression](#227-loess-regression)
 - [2.3: Charts](#23-charts)
   - [2.3.1: Scatterplot](#231-scatterplot)
@@ -182,12 +183,13 @@ standardsccs(event ~ adrug[,1] + season, indiv, astart, aend, adrug, aedrug, sea
 standardsccs(event ~ adrug[,1], indiv, astart, aend, aevent, adrug, aedrug, expogrp, washout, data)
 ```
 
-## 2.2.6: Accelerated failure time (untested)
+## 2.2.6: Accelerated failure time
 
-Requires **eha** package.
+Requires **survival** or **eha** package.
 
 ``` r
-aftreg(Surv(t,y) ~ x_i, data, id, dist)
+survreg(Surv(t,y) ~ x_i, data, id, dist) #survival package version
+aftreg(Surv(t,y) ~ x_i, data, id, dist) #eha package version
 ```
 
 ## 2.2.7: LOESS regression

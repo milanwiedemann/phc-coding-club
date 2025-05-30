@@ -1,9 +1,9 @@
 ---
 title: "Sheet 1: The Very Basics of R for Data Analysis"
 author: "José Boue"
-date: "2025-04-23"
+date: "2025-05-30"
 output: 
-  pdf_document:
+  github_document:
     toc: TRUE
 ---
 
@@ -52,11 +52,21 @@ s <- "Hello World!"
 b <- TRUE
 ```
 
+What do you do if you decide you don't need a variable any more and want to get rid of it entirely, rather than overwrite its value with something else? There is a special function for that: **rm()**, which is short for **remove**. When it is given the name of any R object currently in the environment, it does just that. We will see more advanced uses of rm() in the appendix.
+
+```{r removal}
+mistake <- "This variable was a mistake."
+rm(mistake)
+exists("mistake")
+```
+
+Note the use of the exists() function to determine if an object of the provided name is present in the environment.
+
 ## 1.5: How do you import data from a file?
 
 Most of the time, you will be given data for analysis in the form of a text (**.txt**) or comma-separated (**.csv**) file. Excel files (.xlsx) are not good for this because Excel's auto-formatting can introduce errors, so if someone gives you data in an Excel file do not try to import it. Instead, dispose of the file and kindly inform whoever gave it to you not to do that. Excel files also have a hard limit of 1,048,576 rows, which only seems like a lot to anyone who has never worked with big data. Big data is BIG.
 
-There are two ways to import a data file into R. The first is by clicking the **"import dataset"** button just above the environment, choosing the file type you want, and then navigating to the file in the Explorer window. This is the most "SPSS-like" thing that R lets you do.
+There are two ways to import a data file into R. The first is by clicking the **"import dataset"** button just above the environment window, choosing the file type you want, and then navigating to the file in the Explorer window. This is the most "SPSS-like" thing that R lets you do.
 
 The second way is by using the console. R has built-in functions for importing files, which are called read.table and read.csv. These functions have multiple arguments, but the most important ones that you need to know about for now are the file path, and whether or not the first row of the file should be read as a header.
 
@@ -70,11 +80,15 @@ If any arguments of an R function are not specified, they take their default val
 
 This seems like much more of a fuss than simply using the menu, but you will need to use these commands when importing multiple data sets in sequence (or else you'll get very bored of opening the menu again and again). We'll learn more about how you can eliminate this kind of busy work when we look at control flow.
 
+A word of caution: saving data in the environment is not the same as saving it as a file on your computer. If you want to do the latter so you can easily load it again where you left off, you need to click the floppy disk icon above the environment and save it as an .RData file. Unlike .csv or .txt files, .RData files can contain multiple data sets, as well as any variables or functions you've created in order to manipulate them. You can load an .RData file into your environment by clicking the folder icon next to the save icon.
+
+There are separate icons for saving and loading above the source window, which is where your R scripts live. Just be sure to remember that saving or loading an R script file (with extension .R) will not do the same for its associated data!
+
 ## 1.6: How do you manipulate your data?
 
 Once you have imported your file, it is stored in R as an object known as a **data frame**. A data frame is basically a fancier version of a **matrix**, which itself is a two-dimensional version of a **vector**. What is a vector, you might ask?
 
-A single-valued variable, such as x from before, is known as a **scalar**. Vectors in R are formed using a special function, c(), which **concatenates** (hence the name) any number of scalars of the same type (numeric, character, or logical) into a vector. Here's how you might do it:
+A single-valued variable, such as x from before, is known as a **scalar**. Vectors in R are formed using a special function, **c()**, which **concatenates** (hence the name) any number of scalars of the same type (numeric, character, or logical) into a vector. Here's how you might do it:
 
 ```{r vec1}
 y <- 2
@@ -115,7 +129,7 @@ rep(my_vector,y)
 
 We can do some slightly more advanced things with rep() that we'll look at in the appendix.
 
-Aside from rep(), there is another common method for quickly generating vectors of arbitrary length. If you want to make a numeric sequence rather than a simple repetition of the same few elements, you can use the **:** operator. Simply typing n:m, where n and m are any integers, makes a vector of all integers between n and m inclusive (obviously, if n is more than m it won't work).
+Aside from rep(), there is another common method for quickly generating vectors of arbitrary length. If you want to make a numeric sequence rather than a simple repetition of the same few elements, you can use the **:** operator. Simply typing n:m, where n and m are any integers, makes a vector of all integers between n and m inclusive (if n is more than m it will output them in reverse).
 
 There is a function that does the same thing as : but allows for more options called **seq()**, which we will also look at in the appendix.
 
@@ -237,7 +251,7 @@ Like in standard programming languages, R's control flow primarily uses **if** s
 The basic syntax is the same for all control flow commands. It consists of the command, followed by a statement in brackets that determines the conditions under which the desired effect will happen, followed by the main definition of what that effect will actually do in **curly brackets {}**, which is called the **"body"**. Let's see what the simplest version of this, the if statement, looks like:
 
 ```{r if, eval=FALSE}
-if(is.na(x))){x <- 0}
+if(is.na(x)){x <- 0}
 ```
 
 What this code does should be easy to understand: it checks if the value of a variable x is missing, and if it is, it replaces it with 0. In an if statement, we can put any logical statement in the first pair of brackets. 
