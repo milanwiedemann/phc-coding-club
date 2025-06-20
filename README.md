@@ -1,14 +1,14 @@
 # PHC Coding Club
 
-We aim to organise Coding Clubs fortnightly, with alternating guided (_Guided Coding Club_, for details see schedule below) and open (_Open Coding Club_) sessions.
+We aim to organise Coding Clubs fortnightly. At first all sessions will be guided (_Guided Coding Club_, for details see schedule below), but as time goes by we will mix in some open (_Open Coding Club_) sessions.
 During the _guided_ sessions someone from the group introduces a new tool or topic and during the _open_ sessions we discuss the previous sessions or just code together on our own projects.
 
 ## Guided sessions
 
 | Session | Date | Background | Homework |
 | :---         | :---           | :--- | :--- |
-| TBC | 2025-??-?? | > [Workflow: scripts and projects](https://r4ds.hadley.nz/workflow-scripts.html#projects) <br/> > [Project-oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) | > [Exercises 1](exercises/01-exercises.md) <br/> > [Solutions 1](exercises/01-solutions.md) |
-| TBC | 2025-??-?? | > [Happy Git and GitHub](https://happygitwithr.com/) <br/> > [Oh Shit, Git!?!](https://ohshitgit.com/) | > [Exercises 2](exercises/02-exercises.md) <br/> > Solutions 2 |
+| Introduction to plotting graphs | 2025-??-?? | > [Workflow: scripts and projects](https://r4ds.hadley.nz/workflow-scripts.html#projects) <br/> > [Project-oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) | > [Exercises 1](exercises/01-exercises.md) <br/> > [Solutions 1](exercises/01-solutions.md) |
+| Writing concise code | 2025-??-?? | > [Happy Git and GitHub](https://happygitwithr.com/) <br/> > [Oh Shit, Git!?!](https://ohshitgit.com/) | > [Exercises 2](exercises/02-exercises.md) <br/> > Solutions 2 |
 | TBC | 2025-??-?? | > [Functions](https://r4ds.hadley.nz/functions) <br/> > [Iteration & Functions](https://psyteachr.github.io/reprores-v3/func.html) | > [Exercises 3](exercises/03-exercises.md) <br/> > Solutions 3 |
 | TBC | TBC | > [Tidyteam code review](https://code-review.tidyverse.org/) <br/> > [Code Review](https://psyteachr.github.io/posts/2022-11-21_riots-code-review.html) | > Exercises 4 <br/> > Solutions 4 |
 
