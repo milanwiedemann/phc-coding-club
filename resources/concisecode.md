@@ -323,9 +323,9 @@ itself!
 square root of two using addition and division only. Hint: look up
 continued fractions.
 
--Use `do.call()` to run a statistical model with two slightly different
+* Use `do.call()` to run a statistical model with two slightly different
 sets of arguments.
 
--Have you written any custom functions before? See if you can rewrite
+* Have you written any custom functions before? See if you can rewrite
 them as operators, and test them out in your code. If another language
 has an operator you like, see if you can recreate it.
