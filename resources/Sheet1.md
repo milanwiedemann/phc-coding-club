@@ -1,7 +1,7 @@
 Sheet 1: The Very Basics of R for Data Analysis
 ================
 José Boue
-2025-05-30
+2025-06-23
 
 - [1.1: What is R?](#11-what-is-r)
 - [1.2: What isn’t R?](#12-what-isnt-r)
@@ -79,11 +79,10 @@ object, including **variables** and **functions**.
 ## 1.4: How do you tell R to store something?
 
 R uses very similar syntax for creating all kinds of objects. The key is
-the **assignment** operator, written “\<-”. In most programming
+the **assignment** operator, written `<-`. In most programming
 languages, you declare the value of a variable using a single equals
-sign “=”. That is not the case in R, because R uses assignment to define
-functions as well as variables, and using the equals sign to define a
-function would look a little odd.
+sign `=`. You can actually do this in R too, but it’s not considered
+good practice.
 
 The assignment operator points towards the left to help you visualise
 the program flow. When you define a variable, its name goes on the left
@@ -94,14 +93,14 @@ name, not the other way around. The code could look like this:
 x <- 1
 ```
 
-If you run this code, you will see a variable called x appear in the
+If you run this code, you will see a variable called `x` appear in the
 environment (in the upper right corner of the screen), and you can see
 that its value is 1. So far, so good. If you hover over it, you will see
-that its type is **numeric**. We could have assigned x a string as its
-value, in which case its type would be **character**, or a Boolean (TRUE
-or FALSE) in which case its type would be **logical**. We don’t want to
-overwrite x as we might need to use it later, so we can assign these
-values to two new variables instead.
+that its type is **numeric**. We could have assigned `x` a string as its
+value, in which case its type would be **character**, or a Boolean
+(`TRUE` or `FALSE`) in which case its type would be **logical**. We
+don’t want to overwrite `x` as we might need to use it later, so we can
+assign these values to two new variables instead.
 
 ``` r
 s <- "Hello World!"
@@ -110,10 +109,10 @@ b <- TRUE
 
 What do you do if you decide you don’t need a variable any more and want
 to get rid of it entirely, rather than overwrite its value with
-something else? There is a special function for that: **rm()**, which is
+something else? There is a special function for that: `rm()`, which is
 short for **remove**. When it is given the name of any R object
 currently in the environment, it does just that. We will see more
-advanced uses of rm() in the appendix.
+advanced uses of `rm()` in the appendix.
 
 ``` r
 mistake <- "This variable was a mistake."
@@ -123,7 +122,7 @@ exists("mistake")
 
     ## [1] FALSE
 
-Note the use of the exists() function to determine if an object of the
+Note the use of the `exists()` function to determine if an object of the
 provided name is present in the environment.
 
 ## 1.5: How do you import data from a file?
@@ -144,27 +143,37 @@ in the Explorer window. This is the most “SPSS-like” thing that R lets
 you do.
 
 The second way is by using the console. R has built-in functions for
-importing files, which are called read.table and read.csv. These
+importing files, which are called `read.table()` and `read.csv()`. These
 functions have multiple arguments, but the most important ones that you
 need to know about for now are the file path, and whether or not the
 first row of the file should be read as a header.
 
-When calling read.table or read.csv, the file path must be written as a
-string (enclosed by quotes). In order to save your file in the
-environment, you must assign it a name. Here is an example of what the
-code could look like:
+When calling `read.table()` or `read.csv()`, the file path must be
+written as a string (enclosed by quotes). In order to save your file in
+the environment, you must assign it a name. Here is an example of what
+the code could look like:
 
 ``` r
 my_table <- read.table("C:/Users/me/Documents/example.txt", header=TRUE)
 ```
 
+A quick note: be careful that you don’t rely too much on files which are
+saved on your computer only and not a shared drive, as other people you
+share your code with won’t be able to run it. This goes double if you
+use `setwd()` to fix your working directory, as then it may not be
+obvious to someone who reads snippets of your code that it will only
+work for you. If you have to use `setwd()` in code that other people
+will have to use, make sure to add a very noticeable comment next to it
+that says something like “PLEASE REPLACE THIS FOLDER PATH WITH YOUR OWN
+WORKING DIRECTORY OR CODE WILL NOT RUN”.
+
 If any arguments of an R function are not specified, they take their
 default values (provided such values exist, if they don’t it gives you
 an error). We needed to specify that the first row should be read as a
 header (for data you work with, this will almost always be the case)
-because by default it is FALSE for read.table. For some reason, for
-read.csv it is TRUE by default, so you don’t need to include it. Be
-careful not to get caught out by this!
+because by default it is `FALSE` for `read.table()`. For some reason,
+for `read.csv()` it is `TRUE` by default, so you don’t need to include
+it. Be careful not to get caught out by this!
 
 This seems like much more of a fuss than simply using the menu, but you
 will need to use these commands when importing multiple data sets in
@@ -194,7 +203,7 @@ as a **data frame**. A data frame is basically a fancier version of a
 What is a vector, you might ask?
 
 A single-valued variable, such as x from before, is known as a
-**scalar**. Vectors in R are formed using a special function, **c()**,
+**scalar**. Vectors in R are formed using a special function, `c()`,
 which **concatenates** (hence the name) any number of scalars of the
 same type (numeric, character, or logical) into a vector. Here’s how you
 might do it:
@@ -210,10 +219,10 @@ my_vector
 
 Note that since x is saved in the environment, you don’t have to define
 it again. We used x here to show this functionality, but we could have
-just as easily used the numeric constant 1 instead; c() accepts numbers,
-strings or logical values (TRUE or FALSE) even if they haven’t been
-bound to a variable name. Let’s see some examples using the other
-variables we defined earlier:
+just as easily used the numeric constant 1 instead; `c()` accepts
+numbers, strings or logical values (`TRUE` or `FALSE`) even if they
+haven’t been bound to a variable name. Let’s see some examples using the
+other variables we defined earlier:
 
 ``` r
 c(b, FALSE)
@@ -233,7 +242,7 @@ This leads into our next question…
 
 ## 1.7: How do you manipulate vectors?
 
-The first thing you need to know when working with vectors is that c()
+The first thing you need to know when working with vectors is that `c()`
 is not just for combining scalars. It can also combine vectors with
 scalars, or even with other vectors. Try it:
 
@@ -249,9 +258,9 @@ c(my_vector,my_vector)
 
     ## [1] 1 2 3 1 2 3
 
-You can see that we used c() to duplicate our vector by typing its name
-twice. This seems a bit inefficient, so you’re probably wondering if
-there’s a better way to do it. Luckily, there is: the **rep()**
+You can see that we used `c()` to duplicate our vector by typing its
+name twice. This seems a bit inefficient, so you’re probably wondering
+if there’s a better way to do it. Luckily, there is: the `rep()`
 function. In its most basic form, this function has two arguments: the
 first is a scalar or vector, and the second is a number that tells R how
 many times to repeat it. See that it gives you the same result as
@@ -272,18 +281,18 @@ rep(my_vector,y)
 
     ## [1] 1 2 3 1 2 3
 
-We can do some slightly more advanced things with rep() that we’ll look
-at in the appendix.
+We can do some slightly more advanced things with `rep()` that we’ll
+look at in the appendix.
 
-Aside from rep(), there is another common method for quickly generating
-vectors of arbitrary length. If you want to make a numeric sequence
-rather than a simple repetition of the same few elements, you can use
-the **:** operator. Simply typing n:m, where n and m are any integers,
-makes a vector of all integers between n and m inclusive (if n is more
-than m it will output them in reverse).
+Aside from `rep()`, there is another common method for quickly
+generating vectors of arbitrary length. If you want to make a numeric
+sequence rather than a simple repetition of the same few elements, you
+can use the `:` operator. Simply typing `n:m`, where n and m are any
+integers, makes a vector of all integers between n and m inclusive (if n
+is more than m it will output them in reverse).
 
-There is a function that does the same thing as : but allows for more
-options called **seq()**, which we will also look at in the appendix.
+There is a function that does the same thing as `:` but allows for more
+options called `seq()`, which we will also look at in the appendix.
 
 ## 1.8: Using mathematical operators with vectors
 
@@ -331,10 +340,9 @@ that you can’t put values of different types in the same column.
 
 R has a special syntax for referencing a particular column of a data
 frame. In order to do this, write the name of the data frame followed by
-a dollar sign **\$** and the name of the column. Any method that works
-on vectors can be applied to such an object. You can add a new empty
-column with your preferred name to an existing data frame simply by
-doing this:
+a dollar sign `$` and the name of the column. Any method that works on
+vectors can be applied to such an object. You can add a new empty column
+with your preferred name to an existing data frame simply by doing this:
 
 ``` r
 my_table$new_column <- rep(0)
@@ -344,19 +352,21 @@ Note that you don’t need to specify how long the column vector should
 be, as R makes it the same length as the other columns automatically.
 When I make empty columns like this I prefer to fill them with zeroes
 rather than having them be truly empty (R represents this with the value
-**NA**) because having a column without a defined type can cause
-problems when trying to fill it in with actual data.
+`NA`) because missing values can cause issues when trying to compute
+certain functions, such as the mean of a column (including the argument
+`na.rm=TRUE` causes NAs to be ignored, but it’s easy to forget to do
+this).
 
 An alternate method for adding an existing vector to a data frame as a
-new variable is using the **cbind()** function. cbind() takes one or
+new variable is using the `cbind()` function. `cbind()` takes one or
 more column vectors and/or data frames as arguments and binds them
-together sequentially. However, using cbind() does not allow you to name
-your vectors as you add them: you have to do it manually later. We’ll
-explain how to bind and name at the same time once we get to square
-brackets.
+together sequentially. However, using `cbind()` does not allow you to
+name your vectors as you add them: you have to do it manually later.
+We’ll explain how to bind and name at the same time once we get to
+square brackets.
 
 But what if you don’t want to add a new column, but a new row instead?
-There is another function, naturally named **rbind()**, that does just
+There is another function, naturally named `rbind()`, that does just
 that. Your new row can’t be saved as a vector unless all its entries
 have the same type, though: you must create it either as a **list** or
 as a data frame with 1 row.
@@ -371,44 +381,44 @@ keep them in mind for later.
 ## 1.10: Assembling data frames from scratch
 
 Let’s say you have a bunch of data vectors that you want to assemble
-into a data frame. Using cbind() on them all would produce a matrix, not
-a data frame, as cbind() requires at least one of its arguments to be a
-data frame for the final product to be one. If you mix numeric and
+into a data frame. Using `cbind()` on them all would produce a matrix,
+not a data frame, as `cbind()` requires at least one of its arguments to
+be a data frame for the final product to be one. If you mix numeric and
 character vectors, R still won’t “guess” that the result you want is a
 data frame; instead it will coerce the numeric vectors into characters.
 
 Thankfully, there is a function that allows you to create your own data
-frames, which is conveniently called **data.frame()**. Calling this
+frames, which is conveniently called `data.frame()`. Calling this
 function with no arguments produces a data frame with zero rows and zero
 columns, which seems odd but you can still add data to it later to give
 it a defined size. This will be helpful when working with loops. Each
-argument of data.frame() is a column vector, which you can assign a name
-to. The syntax for doing so looks like this:
+argument of `data.frame()` is a column vector, which you can assign a
+name to. The syntax for doing so looks like this:
 
 ``` r
 my_df <- data.frame("variable_1"=vector1, "variable_2"=vector2, "variable_3"=vector3)
 ```
 
-You can also use this method with the \$ operator to extract specific
+You can also use this method with the `$` operator to extract specific
 columns from an existing data frame to make a new one, although the
-**subset()** function (covered in the appendix) and the square brackets
+`subset()` function (covered in the appendix) and the square brackets
 can do the same thing more elegantly.
 
 ## 1.11: Using square brackets
 
 You can also reference columns, rows, or even single entries of a data
-frame using the **square brackets \[\]**.
+frame using the **square brackets** `[]`.
 
 In one dimension, the square brackets are used to reference a single
 entry of a vector. Unlike in standard programming languages, the indices
 of vectors start at 1 rather than 0. You also can’t use negative indices
 to reference entries starting from the end (for example, in Python
-L\[-1\] would return the last entry of a list L). In R, putting the
-minus sign **-** in front of an index does something rather different:
-it actually drops that entry from the vector, although it doesn’t edit
-the original. It makes a copy of it without that entry, which it won’t
-save unless you assign it a name. If you want to edit a vector to remove
-the first entry, you can overwrite it with the new copy like this:
+`L[-1]` would return the last entry of a list `L`). In R, putting the
+minus sign `-` in front of an index does something rather different: it
+actually drops that entry from the vector, although it doesn’t edit the
+original. It makes a copy of it without that entry, which it won’t save
+unless you assign it a name. If you want to edit a vector to remove the
+first entry, you can overwrite it with the new copy like this:
 
 ``` r
 my_vector <- my_vector[-1]
@@ -416,7 +426,7 @@ my_vector <- my_vector[-1]
 
 You can reference multiple entries of a vector by putting a vector of
 their indices inside the square brackets. You can define these using
-c(), the : operator, or any other method you like. Both lines below
+`c()`, the `:` operator, or any other method you like. Both lines below
 produce the same result:
 
 ``` r
@@ -424,16 +434,16 @@ my_vector[c(1,2,3)]
 my_vector[1:3]
 ```
 
-Putting a - in front of the vector inside the square brackets will
+Putting a `-` in front of the vector inside the square brackets will
 remove **all** the entries it references. Instead of numeric indices,
 you can also use **logical** vectors as indices. Putting a logical
 vector (which must be of the same length as the vector you are
 referencing) inside the square brackets will return only those entries
-for which the value in the same position in the logical vector is TRUE.
-This may not look it at first, but it’s an extremely powerful method.
-The reason for this is because any logical statement involving vectors
-will generate a vector of logical values, which can be used as an
-indexing vector. We’ll cover how to use logical statements soon.
+for which the value in the same position in the logical vector is
+`TRUE`. This may not look it at first, but it’s an extremely powerful
+method. The reason for this is because any logical statement involving
+vectors will generate a vector of logical values, which can be used as
+an indexing vector. We’ll cover how to use logical statements soon.
 
 Using square brackets to reference values in a matrix or data frame is
 similar, only you now have to specify two arguments inside the brackets
@@ -449,12 +459,12 @@ my_df$variable1
 my_df[,1]
 ```
 
-Of course, you can also use the minus sign **-** to quickly drop rows or
+Of course, you can also use the minus sign `-` to quickly drop rows or
 columns that you don’t need.
 
 Another thing you can use square brackets to do easily is renaming
-variables. There is a function called **names()** that, when applied to
-a matrix or data frame, returns a vector containing all the column names
+variables. There is a function called `names()` that, when applied to a
+matrix or data frame, returns a vector containing all the column names
 in order. To rename, say, the 10th column, all you have to do is type
 the following:
 
@@ -462,19 +472,19 @@ the following:
 names(my_df)[10] <- "better_name"
 ```
 
-There is also a **rownames()** function, which is less useful but can
+There is also a `rownames()` function, which is less useful but can
 still help sometimes.
 
 ## 1.12: Logical operators
 
-The basic logical operators in R **(==, !=, \<, \>, \<=, \>=, \|, &,
-!)** are mostly the same as in other programming languages. Testing for
-membership in a set is done with the operator **%in%**, which has
+The basic logical operators in R (`==, !=, <, >, <=, >=, |, &, !`) are
+mostly the same as in other programming languages. Testing for
+membership in a set is done with the operator `%in%`, which has
 percentage signs around it to differentiate it from the “in” used in
 **for** loops. Like standard mathematical operators, logical operators
-are applied element-wise to vectors, which means using \< and \> with
+are applied element-wise to vectors, which means using `<` and `>` with
 vectors actually makes sense. For example, the following line will
-return a logical vector describing whether each entry of my_vector is
+return a logical vector describing whether each entry of `my_vector` is
 greater than 1:
 
 ``` r
@@ -484,7 +494,7 @@ my_vector>1
     ## [1] FALSE  TRUE  TRUE
 
 This means that the following code will keep only the values of
-my_vector that are greater than 1:
+`my_vector` that are greater than 1:
 
 ``` r
 my_vector[my_vector>1]
@@ -494,10 +504,10 @@ my_vector[my_vector>1]
 
 What if you’re not interested in the magnitude of the values that are
 greater than 1, but simply want a vector of their positions? This is
-done using the **which()** function. This function takes a logical
-vector as its argument, and returns the positions of which elements are
-TRUE. Let’s not use my_vector to illustrate this, because its positions
-and values are the same.
+done using the `which()` function. This function takes a logical vector
+as its argument, and returns the positions of which elements are `TRUE`.
+Let’s not use my_vector to illustrate this, because its positions and
+values are the same.
 
 ``` r
 my_fancy_vector <- c(4,2,0,6,9)
@@ -506,26 +516,26 @@ which(my_fancy_vector>3)
 
     ## [1] 1 4 5
 
-Other useful logical functions include **is.na()**, which tells you the
-positions of any values that are missing, and **is.finite()**, which
-tells you which values are numbers (NA, NaN, Inf, and -Inf all return
-FALSE, if you don’t know what these values mean consult the appendix). A
-lot of the time, NA values will mess up your calculations, so when
-formulating your logical statements you will have to add an is.na()
+Other useful logical functions include `is.na()`, which tells you the
+positions of any values that are missing, and `is.finite()`, which tells
+you which values are numbers (`NA`, `NaN`, `Inf`, and `-Inf` all return
+`FALSE`, if you don’t know what these values mean consult the appendix).
+A lot of the time, `NA` values will mess up your calculations, so when
+formulating your logical statements you will have to add an `is.na()`
 call, like this:
 
 ``` r
 with(my_df, variable_2[variable_1==x&!is.na(variable_1)])
 ```
 
-Note the use of **&** (logical AND) and **!** (logical NOT) here. You
-can use these as well as **\|** (logical OR) to make compound logical
+Note the use of `&` (logical AND) and `!` (logical NOT) here. You can
+use these as well as `|` (logical OR) to make compound logical
 statements, saving you from having to pass logical functions multiple
-times. The **with()** function is also very useful, as calling it with a
+times. The `with()` function is also very useful, as calling it with a
 data frame as the first argument and an expression to be evaluated as
 the second allows you to reference its columns by name in the expression
 without needing the dollar sign operator. If you find yourself typing
-the name of a data frame out very often, consider using with() to save
+the name of a data frame out very often, consider using `with()` to save
 you some space.
 
 ## 1.13: Basic control flow
@@ -538,41 +548,44 @@ languages, but that does not mean R loops are not useful.
 The basic syntax is the same for all control flow commands. It consists
 of the command, followed by a statement in brackets that determines the
 conditions under which the desired effect will happen, followed by the
-main definition of what that effect will actually do in **curly brackets
-{}**, which is called the **“body”**. Let’s see what the simplest
-version of this, the if statement, looks like:
+main definition of what that effect will actually do in **curly
+brackets** `{}`, which is called the **“body”** (these brackets are
+technically optional, but it’s only considered good practice to exclude
+them if your statement is restricted to a single line). Let’s see what
+the simplest version of this, the if statement, looks like (sans curly
+brackets):
 
 ``` r
-if(is.na(x)){x <- 0}
+if(is.na(x)) x <- 0
 ```
 
 What this code does should be easy to understand: it checks if the value
-of a variable x is missing, and if it is, it replaces it with 0. In an
+of a variable `x` is missing, and if it is, it replaces it with 0. In an
 if statement, we can put any logical statement in the first pair of
 brackets.
 
 Naturally, an if statement can be accompanied by an **else** clause,
 which requires no condition. Like in some other languages, the way to
 make multiple-choice if statements is by chaining the else clause into
-another if statement. There is no direct equivalent of Python’s “elif”.
+another if statement. There is no direct equivalent of Python’s `elif`.
 
 ``` r
-if(x==1){print("The value of x is 1.")}
-else if(x==0){print("The value of x is 0.")}
-else{print("x is not a binary variable.")}
+if(x==1) print("The value of x is 1.")
+else if(x==0) print("The value of x is 0.")
+else print("x is not a binary variable.")
 ```
 
-R also has a function called **ifelse()** that is designed to replace
-very simple if-else statements for which writing them out in full would
-be cumbersome. This function has three arguments: the first is a logical
+R also has a function called `ifelse()` that is designed to replace very
+simple if-else statements for which writing them out in full would be
+cumbersome. This function has three arguments: the first is a logical
 statement, the second is what the function will output if that statement
-is TRUE, and the third is the output if that statement is FALSE. In
+is `TRUE`, and the third is the output if that statement is `FALSE`. In
 effect, the two lines below are the same:
 
 ``` r
 ifelse(condition, "Yes", "No")
 
-if(condition){print("Yes")} else{print("No")}
+if(condition) print("Yes") else print("No")
 ```
 
 Loops are similar to if statements, only instead of evaluating their
@@ -580,20 +593,22 @@ condition once they do it multiple times in succession. There are three
 types of loops in R, **for**, **while**, and **repeat**.
 
 The **for** loop is the most intuitive to use. Its condition is not a
-logical statement, but is of the form **i in v** where i is a dummy
-variable and v is a vector of your choice. For instance, if we want to
+logical statement, but is of the form `i in v` where `i` is a dummy
+variable and `v` is a vector of your choice. For instance, if we want to
 expand our if-else statement above to deal with a variable that can take
 any integer value from 0 to 9 rather than just 0 or 1, we can use a for
 loop:
 
 ``` r
 for(i in 0:9){
-  if(x==i){print(str_glue("The value of x is {i}."))}
+  if(x==i){
+    print(str_glue("The value of x is {i}."))
+  }
 }
 ```
 
-The **str_glue()** function is a very useful function for string
-manipulation which is part of the **stringr** package. We’ll look more
+The `str_glue()` function is a very useful function for string
+manipulation which is part of the `stringr` package. We’ll look more
 closely at it and its associated package in the appendix.
 
 Typically, when manipulating data you will only need to use for loops.
@@ -609,23 +624,29 @@ at some point you will need to write your own. Writing functions can
 save time, as you can call a function anywhere in your code without
 having to write a complicated expression in full again. Function
 definitions use a similar syntax to control flow statements, but they
-must be assigned a name like variables. The basic structure looks like
+must be assigned a name like variables. If you’re used to a language
+like C++ or Python, R’s function definitions have a syntax which is more
+similar to lambda expressions than the basic function definitions in
+those languages. The structure of a function definition in R looks like
 this:
 
 ``` r
-my_function <- function(args){body}
+my_function <- function(args){
+  body
+}
 ```
 
-The first pair of brackets contains all the function’s arguments, which
-like in a for loop are just dummy variables that can be used again in
-the function body. The function’s body determines what its output will
-be. In order to make sure a function outputs only a single value, use
-the **return()** function. Once the return() function is called, the
-main function will terminate, and all body code below the return() will
-be ignored. Other functions like **print()** do not work this way, so
-you can easily make a function that prints a succession of values using
-a loop. Note that unlike in some other languages, print() does not
-automatically turn its argument into a string.
+Again, if everything fits on a single line the curly brackets can be
+omitted. The first pair of brackets contains all the function’s
+arguments, which like in a for loop are just dummy variables that can be
+used again in the function body. The function’s body determines what its
+output will be. In order to make sure a function outputs only a single
+value, use the `return()` function. Once the `return()` function is
+called, the main function will terminate, and all body code below the
+`return()` will be ignored. Other functions like `print()` do not work
+this way, so you can easily make a function that prints a succession of
+values using a loop. Note that unlike in some other languages, `print()`
+does not automatically turn its argument into a string.
 
 ``` r
 loop_function <- function(n){
@@ -643,14 +664,15 @@ include code to handle them.
 ## 1.15: Where should you go if you have further questions?
 
 R has an inbuilt method for helping with unfamiliar code. If you ever
-see a function you don’t recognise or understand, you can type ?
+see a function you don’t recognise or understand, you can type `?`
 followed by the function name in the console and R will automatically
-open the help page for that function. Default functions will have very
-thorough documentation, but due to R’s open-source nature if you are
-using specialised packages you are at the mercy of how dense or sparse
-the author’s explanation is. In cases where the official documentation
-is not enough, you can do the classic moves of either resorting to
-StackOverflow or asking an AI to explain it to you, but I believe the
-best course of action is always to play around with the code until you
-figure it out. If you are careful not to overwrite your existing data,
-messing up won’t cost you much other than your time. Good luck!
+open the help page for that function. Built-in functions will (usually)
+have very thorough documentation, but due to R’s open-source nature if
+you are using specialised packages you are at the mercy of how dense or
+sparse the author’s explanation is. In cases where the official
+documentation is not enough, you can do the classic moves of either
+resorting to StackOverflow or asking an AI to explain it to you, but I
+believe the best course of action is always to play around with the code
+until you figure it out. If you are careful not to overwrite your
+existing data, messing up won’t cost you much other than your time. Good
+luck!

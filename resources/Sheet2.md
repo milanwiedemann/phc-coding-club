@@ -1,7 +1,7 @@
 Sheet 2: Statistical tests, models, and charts in R
 ================
 José Boue
-2025-04-28
+2025-06-23
 
 - [2.1: Tests](#21-tests)
   - [2.1.1: *z*-test](#211-z-test)
@@ -41,14 +41,14 @@ José Boue
   - [2.3.10: Choropleth map](#2310-choropleth-map)
   - [2.3.11: Cartogram](#2311-cartogram)
 
-All functions in this document are assumed to require the **stats**
+All functions in this document are assumed to require the `stats`
 package, which is built-in to current versions of R and doesn’t need to
 be manually installed.
 
 # 2.1: Tests
 
-If a function has an argument “alternative”, this can be “two.sided”,
-“less”, or “greater”.
+If a function has an argument `alternative`, this can be `two.sided`,
+`less`, or `greater`.
 
 ## 2.1.1: *z*-test
 
@@ -121,54 +121,51 @@ ks.test(x, cdf, alternative) #one-sample test
 
 # 2.2: Models
 
-If a variable var_i is included as an argument, this is shorthand for
-“var_1 + var_2 + var_3 + … + var_n” for an arbitrary n.
-
 ## 2.2.1: Linear regression
 
 ``` r
-lm(y ~ x_i, data)
+lm(y ~ ..., data)
 ```
 
 ## 2.2.2: Poisson regression
 
 ``` r
-glm(y ~ x_i, family="poisson", data)
+glm(y ~ ..., family="poisson", data)
 ```
 
 ### 2.2.2a: Conditional Poisson regression (untested)
 
-Requires **acp** package.
+Requires `acp` package.
 
 ``` r
-acp(y ~ x_i, data, p, q, family="poisson")
+acp(y ~ ..., data, p, q, family="poisson")
 ```
 
 ## 2.2.3: Logistic regression
 
 ``` r
-glm(y ~ x_i, family="binomial", data)
+glm(y ~ ..., family="binomial", data)
 ```
 
 ### 2.2.3a: Conditional logistic regression
 
-Requires **survival** package.
+Requires `survival` package.
 
 ``` r
-clogit(y ~ x_i, data)
+clogit(y ~ ..., data)
 ```
 
 ## 2.2.4: Cox regression
 
-Requires **survival** package.
+Requires `survival` package.
 
 ``` r
-coxph(Surv(t,y) ~ x_i, data)
+coxph(Surv(t,y) ~ ..., data)
 ```
 
 ## 2.2.5: Self-controlled case series
 
-Requires **SCCS** package.
+Requires `SCCS` package.
 
 ``` r
 #Basic model, dose-independent exposure
@@ -185,17 +182,17 @@ standardsccs(event ~ adrug[,1], indiv, astart, aend, aevent, adrug, aedrug, expo
 
 ## 2.2.6: Accelerated failure time
 
-Requires **survival** or **eha** package.
+Requires `survival` or `eha` package.
 
 ``` r
-survreg(Surv(t,y) ~ x_i, data, id, dist) #survival package version
-aftreg(Surv(t,y) ~ x_i, data, id, dist) #eha package version
+survreg(Surv(t,y) ~ ..., data, id, dist) #survival package version
+aftreg(Surv(t,y) ~ ..., data, id, dist) #eha package version
 ```
 
 ## 2.2.7: LOESS regression
 
 ``` r
-loess(y ~ x_i, data)
+loess(y ~ ..., data)
 ```
 
 # 2.3: Charts
@@ -220,7 +217,7 @@ barplot(height=M, width, beside=FALSE) #stacked bar plot
 ## 2.3.3: Box plot
 
 ``` r
-boxplot(y ~ g_i, data)
+boxplot(y ~ ..., data)
 ```
 
 ## 2.3.4: Histogram
@@ -250,7 +247,7 @@ qqplot(x, y) #Generic Q-Q plot
 
 ## 2.3.8: Forest plot
 
-Requires **forestploter** package.
+Requires `forestploter` package.
 
 ``` r
 plot(forest(data, est, lower, upper, sizes, ci_column, ref_line))
@@ -258,7 +255,7 @@ plot(forest(data, est, lower, upper, sizes, ci_column, ref_line))
 
 ## 2.3.9: Kaplan-Meier plot
 
-Requires **survival** package.
+Requires `survival` package.
 
 ``` r
 plot(survfit(y ~ x, data))
@@ -266,7 +263,7 @@ plot(survfit(y ~ x, data))
 
 ## 2.3.10: Choropleth map
 
-Requires **sf** package. Other packages optional.
+Requires `sf` package. Other packages optional.
 
 ``` r
 plot(shapefile[,"var_name"])
@@ -274,7 +271,7 @@ plot(shapefile[,"var_name"])
 
 ## 2.3.11: Cartogram
 
-Requires **cartogram** package. Other packages optional.
+Requires `cartogram` package. Other packages optional.
 
 ``` r
 plot(cartogram_cont(shapefile, weight)) #contiguous cartogram (shape-distorting)
