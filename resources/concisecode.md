@@ -305,21 +305,21 @@ If reading about all the ways to make your code more concise has
 inspired you to give it a go yourself, here are some basic tasks you can
 apply it to, in no particular order of difficulty:
 
--Use a for loop to import multiple data files into R in one go. Hint:
+* Use a for loop to import multiple data files into R in one go. Hint:
 use `paste0()` to generate the file paths.
 
--Use a while loop to simulate throwing two six-sided dice, and stop when
+* Use a while loop to simulate throwing two six-sided dice, and stop when
 you roll a double six. If you want an extra challenge, record how many
 throws it took. Hint: use the `sample()` function.
 
--Use a repeat loop to find the smallest integer obeying a logical
+* Use a repeat loop to find the smallest integer obeying a logical
 condition of your choice.
 
--Use `sapply()` to apply a different function to each column of a matrix
+* Use `sapply()` to apply a different function to each column of a matrix
 or data frame. Hint: you can call `sapply()` as a function inside
 itself!
 
--Use `Reduce()` to compute an approximation to the golden ratio or the
+* Use `Reduce()` to compute an approximation to the golden ratio or the
 square root of two using addition and division only. Hint: look up
 continued fractions.
 
