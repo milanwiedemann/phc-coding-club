@@ -7,8 +7,8 @@ During the _guided_ sessions someone from the group introduces a new tool or top
 
 | Session | Date | Background | Worksheets |
 | :---         | :---           | :--- | :--- |
-| Introduction to plotting graphs | 2025-??-?? | > [YaRrr Chapter 11: Plotting (I)](https://bookdown.org/ndphillips/YaRrr/plotting1.html) <br/> > [ggplot2 documentation](https://ggplot2.tidyverse.org/) | > [Exercises 1](exercises/01-exercises.md) <br/> > [Solutions 1](exercises/01-solutions.md) |
-| Writing concise code | 2025-??-?? | > [Happy Git and GitHub](https://happygitwithr.com/) <br/> > [Oh Shit, Git!?!](https://ohshitgit.com/) | > [Reference sheet](resources/concisecode.md) <br/> > Solutions 2 |
+| Introduction to plotting graphs | 2025-??-?? | > [YaRrr! Chapter 11: Plotting (I)](https://bookdown.org/ndphillips/YaRrr/plotting1.html) <br/> > [ggplot2 documentation](https://ggplot2.tidyverse.org/) | > [Exercises 1](exercises/01-exercises.md) <br/> > [Solutions 1](exercises/01-solutions.md) |
+| Writing concise code | 2025-??-?? | > [Duplicate code](https://en.wikipedia.org/wiki/Duplicate_code) <br/> > [Functional Programming 101](https://github.com/readme/guides/functional-programming-basics) | > [Reference sheet](resources/concisecode.md) <br/> > Solutions 2 |
 | TBC | 2025-??-?? | > [Functions](https://r4ds.hadley.nz/functions) <br/> > [Iteration & Functions](https://psyteachr.github.io/reprores-v3/func.html) | > [Exercises 3](exercises/03-exercises.md) <br/> > Solutions 3 |
 | TBC | TBC | > [Tidyteam code review](https://code-review.tidyverse.org/) <br/> > [Code Review](https://psyteachr.github.io/posts/2022-11-21_riots-code-review.html) | > Exercises 4 <br/> > Solutions 4 |
 
