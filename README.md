@@ -32,8 +32,10 @@ If you are completely new to R or would like to quickly refresh your knowledge b
   - [Software Carpentry](https://software-carpentry.org/lessons/index.html): Beginner friendly workshops for researchers, e.g., [R for Reproducible Scientific Analysis](https://swcarpentry.github.io/r-novice-gapminder/) or [Version Control with Git](https://swcarpentry.github.io/git-novice/)
   - [YaRrr! The Pirate's Guide to R](https://bookdown.org/ndphillips/YaRrr/)
   - [R Programming for Statistics and Data Science](https://www.oreilly.com/videos/r-programming-for/9781789950298/): Online video course available for free to Oxford members
+  - [Impatient R](https://www.burns-stat.com/documents/tutorials/impatient-r/)
 
 - **For more experienced coders:**
   - [Advanced R (2e)](https://adv-r.hadley.nz/)
   - [R Packages (2e)](https://r-pkgs.org/)
+  - [The R Inferno](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf)
   - [General programming challenges](https://old.reddit.com/r/dailyprogrammer/)
