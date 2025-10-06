@@ -7,10 +7,10 @@ During the _guided_ sessions someone from the group introduces a new tool or top
 
 | Session | Date | Background | Worksheets |
 | :---         | :---           | :--- | :--- |
-| Data visualisation with base R and ggplot2 | 2025-10-23 | > [YaRrr! Chapter 11: Plotting (I)](https://bookdown.org/ndphillips/YaRrr/plotting1.html) <br/> > [ggplot2 documentation](https://ggplot2.tidyverse.org/) | > [Exercises 1](exercises/01-exercises.md) <br/> > [Solutions 1](exercises/01-solutions.md) |
-| TBC | 2025-??-?? | > [Duplicate code](https://en.wikipedia.org/wiki/Duplicate_code) <br/> > [Functional Programming 101](https://github.com/readme/guides/functional-programming-basics) | > [Reference sheet](resources/concisecode.md) <br/> > Solutions 2 |
-| TBC | 2025-??-?? | > [Functions](https://r4ds.hadley.nz/functions) <br/> > [Iteration & Functions](https://psyteachr.github.io/reprores-v3/func.html) | > [Exercises 3](exercises/03-exercises.md) <br/> > Solutions 3 |
-| TBC | TBC | > [Tidyteam code review](https://code-review.tidyverse.org/) <br/> > [Code Review](https://psyteachr.github.io/posts/2022-11-21_riots-code-review.html) | > Exercises 4 <br/> > Solutions 4 |
+| Data visualisation with base R and ggplot2 | 2025-10-23 | > [YaRrr! Chapter 11: Plotting (I)](https://bookdown.org/ndphillips/YaRrr/plotting1.html) <br/> > [ggplot2 documentation](https://ggplot2.tidyverse.org/) | > [Reference script](exercises/01-exercises.md) <br/> > [Demo examples](exercises/01-solutions.md) |
+| TBC | 2025-11-06? | > TBC <br/> > TBC | > Reference script <br/> > Demo examples |
+| TBC | 2025-11-20? | > TBC <br/> > TBC | > Reference script <br/> > Demo examples |
+| TBC | 2025-12-04? | > TBC <br/> > TBC | > Reference script <br/> > Demo examples |
 
 ## Optional pre-session reading
 
@@ -20,7 +20,7 @@ If you are completely new to R or would like to quickly refresh your knowledge b
 
 [Sheet 1a: Basics of R (Appendices)](resources/Sheet1a.md)
 
-[Sheet 2: Statistical Tests, Models, and Charts in R](resources/Sheet2.md)
+More of these to come!
 
 ## General resources
 
