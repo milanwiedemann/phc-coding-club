@@ -1,7 +1,7 @@
 Session 1a: Basics of R (Appendices)
 ================
 José Boue
-2025-06-23
+2025-10-23
 
 - [Appendix 1: Extra arguments for `read.table()` and
   `read.csv()`](#appendix-1-extra-arguments-for-readtable-and-readcsv)
@@ -18,12 +18,14 @@ José Boue
 - [Appendix 9: The `stringr` package](#appendix-9-the-stringr-package)
 - [Appendix 10: Advanced uses of
   `rm()`](#appendix-10-advanced-uses-of-rm)
-- [Appendix 11: While and repeat
-  loops](#appendix-11-while-and-repeat-loops)
-- [Appendix 12: Unfulfilled promises](#appendix-12-unfulfilled-promises)
-- [Appendix 13: Anonymous functions and the `apply()`
-  family](#appendix-13-anonymous-functions-and-the-apply-family)
-- [Appendix 14: Dates](#appendix-14-dates)
+- [Appendix 11: if-else versus
+  ifelse()](#appendix-11-if-else-versus-ifelse)
+- [Appendix 12: While and repeat
+  loops](#appendix-12-while-and-repeat-loops)
+- [Appendix 13: Unfulfilled promises](#appendix-13-unfulfilled-promises)
+- [Appendix 14: Anonymous functions and the `apply()`
+  family](#appendix-14-anonymous-functions-and-the-apply-family)
+- [Appendix 15: Dates](#appendix-15-dates)
 
 ## Appendix 1: Extra arguments for `read.table()` and `read.csv()`
 
@@ -45,7 +47,7 @@ a comma in order to read .csv files without using `read.csv()`, or a tab
 (“\t”) to read tab-delimited files. The `read.csv()` function naturally
 has the comma as its default separator. In some European countries the
 comma is used in place of the decimal point and the semicolon as a
-separator, so be sure to change the sep argument accordingly if you’re
+separator, so be sure to change the `sep` argument accordingly if you’re
 working with files from Europe.
 
 ## Appendix 2: Writing to a .txt or .csv file
@@ -80,7 +82,7 @@ reached (it can cut it off in order to do so). Let’s see what the code
 looks like:
 
 ``` r
-my_vector <- c(1,2,3)
+my_vector <- c(1, 2, 3)
 rep(my_vector, each=2)
 ```
 
@@ -103,9 +105,9 @@ two arguments should be specified, as the value of one uniquely
 determines the other. There are variants of `seq()` that require fewer
 arguments, such as `seq_along()`, which when given a vector returns a
 sequence from 1 to its length. This is not exactly the same as using
-`1:length(v)`, because `1:0` produces a vector equal to `c(1,0)` instead
-of a zero-length vector, so `seq_along()` is useful in this case for
-avoiding unintended behaviour.
+`1:length(v)`, because `1:0` produces a vector equal to `c(1, 0)`
+instead of a zero-length vector, so `seq_along()` is useful in this case
+for avoiding unintended behaviour.
 
 ## Appendix 6: The `subset()` function
 
@@ -141,10 +143,18 @@ my_list[[1]][1]
 ```
 
 If your list elements are named, you can also use the dollar sign
-operator `$` to reference them like you would with a data frame. You can
-actually use the double square brackets with data frames as well because
-a data frame is essentially a two-dimensional list, but this is usually
-not necessary.
+operator `$` to reference them like you would with a data frame, and
+even chain together multiple dollar sign expressions if your lists are
+nested:
+
+``` r
+#element is inside list2 which in turn is inside list1
+list1$list2$element
+```
+
+Conversely, you can actually use the double square brackets with data
+frames as well because a data frame is essentially a two-dimensional
+list, but this is usually not necessary.
 
 ## Appendix 8: `Inf` and `NaN`
 
@@ -153,7 +163,7 @@ what `Inf` and `NaN` are and the difference between them. If not, don’t
 worry. `Inf` simply means **“infinity”**, which often is not actually
 infinite but shorthand for “bigger than any number R is capable of
 calculating”. For example, attempting to divide a number by zero will
-return `Inf`, but you also might get `(0,Inf)` as a confidence interval
+return `Inf`, but you also might get `(0, Inf)` as a confidence interval
 if your statistical model takes too long to converge. `-Inf` is the same
 but negative. `NaN` stands for **“Not a Number”**, which means that if a
 calculation returns it the answer likely doesn’t even exist. For
@@ -189,6 +199,12 @@ strings. If you enclose the name of a variable with curly brackets `{}`,
 change an input or output string simply by changing a variable rather
 than having to fiddle around with the string itself.
 
+Base R actually has a function called `sprintf()` which can do the same
+thing, but it’s carried over wholesale from C and hence has extremely
+fiddly and un-R-like syntax. I would not advise using this function
+unless you are trying to minimise the amount of package dependencies in
+your code, which can be relevant sometimes.
+
 There are many other nice functions in the `stringr` package, but most
 of them make use of **regular expressions**. This is a topic which is
 too big and too complex to fit in this appendix, so expect to see an
@@ -204,13 +220,13 @@ to do this is to pass a vector of their names. There are two ways to do
 this:
 
 ``` r
-rm(var1,var2,var3)
+rm(var1, var2, var3)
 rm(list=c(var1, var2, var3))
 ```
 
 Note that you if you’re not writing out the names of the variables in
 full, you will need to use the `list` argument rather than the default.
-The list argument is useful for removing a pre-defined vector of
+The `list` argument is useful for removing a pre-defined vector of
 variables to save time writing them out.
 
 If you have a lot of variables you need to get rid of, or if their names
@@ -245,7 +261,29 @@ rm(list=ls(pattern="var"))
 Of course, you need to be smart with naming your objects if you want to
 make full use of this.
 
-## Appendix 11: While and repeat loops
+## Appendix 11: if-else versus ifelse()
+
+I mentioned earlier that these two styles of coding a simple conditional
+statement have some subtle differences in their behaviour, which are not
+usually seen but can can cause very cryptic errors when they do show up.
+The ordinary if-else statement requires its condition to be of length 1,
+or else it will throw an error. The ifelse() function does not have this
+restriction: its output always has the same length as its condition,
+which can be more than 1. However, it applies its condition element-wise
+to its two possible outputs, meaning that neither of them can be longer
+than its condition, and if they are shorter they will be recycled. It’s
+quite hard to explain exactly how this works, so here is some code
+illustrating it:
+
+``` r
+ifelse(c(TRUE, FALSE, TRUE, FALSE),
+       c("work it", "make it", "do it", "makes us"),
+       c("harder", "better", "faster", "stronger"))
+```
+
+    ## [1] "work it"  "better"   "do it"    "stronger"
+
+## Appendix 12: While and repeat loops
 
 **While** loops are very close to if statements in their syntax. They
 also use a logical expression as their condition, but can evaluate it
@@ -262,10 +300,9 @@ while loop that uses an if statement to decide whether to break:
 
 ``` r
 while(n>0){
-  if(is.integer(n)){
+  if(n%%1==0){
     n <- n-1
-  }
-  else break
+  } else break
 }
 ```
 
@@ -278,7 +315,7 @@ the only way to terminate it is by manually breaking it. If it is part
 of a function, you can break it with a `return()` command. You can
 achieve the same effect as a repeat loop by writing `while(TRUE)`.
 
-## Appendix 12: Unfulfilled promises
+## Appendix 13: Unfulfilled promises
 
 So far, it has been stated that an empty data frame can easily be filled
 using a loop, the `read.table()` and `read.csv()` functions can be
@@ -299,7 +336,7 @@ for(i in 1:100){
 }
 ```
 
-## Appendix 13: Anonymous functions and the `apply()` family
+## Appendix 14: Anonymous functions and the `apply()` family
 
 If you know about lambda expressions in languages like Python, you will
 remember that their main use is to allow functions to be used without
@@ -311,11 +348,11 @@ inline, and it will work. The most common functions you will use this
 with are the `apply()` family, which let you (depending on which
 `apply()` function you use) take a vector, list or even a matrix and
 apply a function element-wise to it that doesn’t normally work that way
-without going to the trouble of writing a loop. For more on the
-`apply()` family and anonymous functions, see the “Writing concise code”
-reference sheet.
+without going to the trouble of writing a loop. R has quite a few other
+useful higher-order functions (functions that take other functions as
+arguments), which may be covered on a future sheet.
 
-## Appendix 14: Dates
+## Appendix 15: Dates
 
 There are no references to dates in the main document, but I figure
 they’re important enough to include here anyway. Under the hood, R

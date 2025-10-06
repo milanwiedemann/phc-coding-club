@@ -1,7 +1,7 @@
 Sheet 1: The Very Basics of R for Data Analysis
 ================
 José Boue
-2025-06-23
+2025-10-23
 
 - [1.1: What is R?](#11-what-is-r)
 - [1.2: What isn’t R?](#12-what-isnt-r)
@@ -38,13 +38,15 @@ available somewhere that will let you do it with minimal difficulty.
 
 What sets R apart from other software applications with similar purposes
 is that it is also a fully-fledged programming language. This can make
-using it seem daunting at first!
+using it seem daunting at first, but the freedom this gives you is well
+worth it.
 
 ## 1.2: What isn’t R?
 
 R is not Excel. You can’t expect to set up your tables just by clicking
-and dragging. All data manipulation in R must be performed by typing
-commands into the R console, or running them from script files.
+and dragging, and there is a strict separation between code and data.
+You can’t edit data directly or put formulae into cells, you have to
+input commands to manipulate it.
 
 R is not SPSS. You can’t perform your analyses by navigating menus - you
 have to type all the code that defines your models and graphs out
@@ -62,10 +64,11 @@ which you take for granted about languages like C++ or Python
 (e.g. array indices starting from 0) have no guarantee of being true
 here.
 
-R is not MATLAB. Frankly, MATLAB is awful. Its syntax is horrible, it
-hogs memory, and if it doesn’t work it’s nearly impossible to figure out
-what you did wrong. If, like me, you have used MATLAB before and hated
-it, I can reassure you that R is superior on all of those fronts.
+R is not MATLAB. Frankly, MATLAB is awful. It’s slow to load, its syntax
+is horrible, it hogs disk space, and if it doesn’t work it’s nearly
+impossible to figure out what you did wrong. If, like me, you have used
+MATLAB before and hated it, I can reassure you that R is superior on all
+of those fronts.
 
 ## 1.3: Where does R keep your data?
 
@@ -87,20 +90,39 @@ good practice.
 The assignment operator points towards the left to help you visualise
 the program flow. When you define a variable, its name goes on the left
 and its value goes on the right. You are **assigning** the value to the
-name, not the other way around. The code could look like this:
+name, not the other way around. A common Computer Science 101 test
+question is to write down the output of a piece of C-like pseudocode
+that looks something like this (in this case, it’s also valid R code):
 
 ``` r
-x <- 1
+y = 1
+x = 2
+x = y
+print(x)
 ```
 
-If you run this code, you will see a variable called `x` appear in the
-environment (in the upper right corner of the screen), and you can see
-that its value is 1. So far, so good. If you hover over it, you will see
-that its type is **numeric**. We could have assigned `x` a string as its
-value, in which case its type would be **character**, or a Boolean
-(`TRUE` or `FALSE`) in which case its type would be **logical**. We
-don’t want to overwrite `x` as we might need to use it later, so we can
-assign these values to two new variables instead.
+The reason this question isn’t completely trivial is because, if you’re
+unfamiliar with how assignment in programming languages works, it’s not
+obvious whether it will print 1 or 2. Rewriting the code with `<-`
+instead of `=` makes it much clearer that the answer will be 1:
+
+``` r
+y <- 1
+x <- 2
+x <- y
+print(x)
+```
+
+    ## [1] 1
+
+If you actually run this code, you will see a variable called `x` appear
+in the environment (in the upper right corner of the screen), and you
+can see that its value is 1. So far, so good. If you hover over it, you
+will see that its type is **numeric**. We could have assigned `x` a
+string as its value, in which case its type would be **character**, or a
+Boolean (`TRUE` or `FALSE`) in which case its type would be **logical**.
+We don’t want to overwrite `x` as we might need to use it later, so we
+can assign these values to two new variables instead.
 
 ``` r
 s <- "Hello World!"
@@ -154,8 +176,12 @@ the environment, you must assign it a name. Here is an example of what
 the code could look like:
 
 ``` r
-my_table <- read.table("C:/Users/me/Documents/example.txt", header=TRUE)
+my_df <- read.table("C:/Users/me/Documents/example.txt", header=TRUE)
 ```
+
+The reason I chose to name my hypothetical imported file “my_df” is
+because R returns it as a type of object called a **data frame**. More
+on that in the next section.
 
 A quick note: be careful that you don’t rely too much on files which are
 saved on your computer only and not a shared drive, as other people you
@@ -163,9 +189,10 @@ share your code with won’t be able to run it. This goes double if you
 use `setwd()` to fix your working directory, as then it may not be
 obvious to someone who reads snippets of your code that it will only
 work for you. If you have to use `setwd()` in code that other people
-will have to use, make sure to add a very noticeable comment next to it
-that says something like “PLEASE REPLACE THIS FOLDER PATH WITH YOUR OWN
-WORKING DIRECTORY OR CODE WILL NOT RUN”.
+will have to use, make sure to add a very noticeable comment (the syntax
+for doing this is the hash symbol `#`) next to it that says something
+like “PLEASE REPLACE THIS FOLDER PATH WITH YOUR OWN WORKING DIRECTORY OR
+CODE WILL NOT RUN”.
 
 If any arguments of an R function are not specified, they take their
 default values (provided such values exist, if they don’t it gives you
@@ -197,10 +224,11 @@ its associated data!
 
 ## 1.6: How do you manipulate your data?
 
-Once you have imported your file, it is stored in R as an object known
-as a **data frame**. A data frame is basically a fancier version of a
-**matrix**, which itself is a two-dimensional version of a **vector**.
-What is a vector, you might ask?
+As mentioned briefly in the previous section, once you have imported
+your file, it is stored in R as an object known as a **data frame**. A
+data frame is basically a fancier version of a **matrix**, which itself
+is a two-dimensional version of a **vector**. What is a vector, you
+might ask?
 
 A single-valued variable, such as x from before, is known as a
 **scalar**. Vectors in R are formed using a special function, `c()`,
@@ -211,7 +239,7 @@ might do it:
 ``` r
 y <- 2
 z <- 3
-my_vector <- c(x,y,z)
+my_vector <- c(x, y, z)
 my_vector
 ```
 
@@ -247,13 +275,13 @@ is not just for combining scalars. It can also combine vectors with
 scalars, or even with other vectors. Try it:
 
 ``` r
-c(my_vector,x)
+c(my_vector, x)
 ```
 
     ## [1] 1 2 3 1
 
 ``` r
-c(my_vector,my_vector)
+c(my_vector, my_vector)
 ```
 
     ## [1] 1 2 3 1 2 3
@@ -267,7 +295,7 @@ many times to repeat it. See that it gives you the same result as
 before:
 
 ``` r
-rep(my_vector,2)
+rep(my_vector, 2)
 ```
 
     ## [1] 1 2 3 1 2 3
@@ -276,7 +304,7 @@ The second argument need not be a constant, either. This is also
 allowed:
 
 ``` r
-rep(my_vector,y)
+rep(my_vector, y)
 ```
 
     ## [1] 1 2 3 1 2 3
@@ -289,7 +317,7 @@ generating vectors of arbitrary length. If you want to make a numeric
 sequence rather than a simple repetition of the same few elements, you
 can use the `:` operator. Simply typing `n:m`, where n and m are any
 integers, makes a vector of all integers between n and m inclusive (if n
-is more than m it will output them in reverse).
+is greater than m it will output them in reverse).
 
 There is a function that does the same thing as `:` but allows for more
 options called `seq()`, which we will also look at in the appendix.
@@ -307,17 +335,16 @@ length is equivalent to applying it on each pair of values in the same
 position in sequence.
 
 ``` r
-rep(1,5)+rep(2,5)
+rep(1, 5)+rep(2, 5)
 ```
 
     ## [1] 3 3 3 3 3
 
-If the vectors are not the same length, it can still work; however the
-length of one vector must be an exact multiple of the length of the
-other. What happens in this case is that the smaller vector is repeated
-to match the length of the other before the operation is carried out.
-This means that you can add a number to every element of a vector at
-once simply by typing the following:
+If the vectors are not the same length, it can still work. What happens
+in this case is that the smaller vector is repeated to match the length
+of the other before the operation is carried out. This means that you
+can add a number to every element of a vector at once simply by typing
+the following:
 
 ``` r
 my_vector+1
@@ -325,9 +352,22 @@ my_vector+1
 
     ## [1] 2 3 4
 
+If the larger vector’s length is not an exact multiple of the smaller
+one’s, the last repeat of it will be truncated, and you will get a
+warning (but R will still return the answer).
+
+``` r
+1:2+1:3
+```
+
+    ## Warning in 1:2 + 1:3: longer object length is not a multiple of shorter object
+    ## length
+
+    ## [1] 2 4 4
+
 Needless to say, most programming languages will throw a hissy fit if
 you try to do anything like this with two objects that have different
-lengths. Subtraction, multiplication and division work the same way.
+lengths.
 
 ## 1.9: Working with data frames
 
@@ -345,25 +385,33 @@ vectors can be applied to such an object. You can add a new empty column
 with your preferred name to an existing data frame simply by doing this:
 
 ``` r
-my_table$new_column <- rep(0)
+my_df$new_column <- NA
 ```
 
-Note that you don’t need to specify how long the column vector should
-be, as R makes it the same length as the other columns automatically.
-When I make empty columns like this I prefer to fill them with zeroes
-rather than having them be truly empty (R represents this with the value
-`NA`) because missing values can cause issues when trying to compute
-certain functions, such as the mean of a column (including the argument
-`na.rm=TRUE` causes NAs to be ignored, but it’s easy to forget to do
-this).
+Note that R automatically recycles the value on the right until the new
+column is the same length as all the others. You can see also that R
+represents a missing value with `NA`. Having a special symbol for
+missing values is useful (in particular, because they are distinct from
+a value of zero), but keep in mind that NAs can cause issues when trying
+to compute certain functions, such as the mean of a column (including
+the argument `na.rm=TRUE` causes NAs to be ignored, but it’s easy to
+forget to do this).
 
 An alternate method for adding an existing vector to a data frame as a
 new variable is using the `cbind()` function. `cbind()` takes one or
 more column vectors and/or data frames as arguments and binds them
-together sequentially. However, using `cbind()` does not allow you to
-name your vectors as you add them: you have to do it manually later.
-We’ll explain how to bind and name at the same time once we get to
+together sequentially. `cbind()` also lets you name the new columns of a
+data frame, if you’re adding them one at a time. It has an advantage
+over using `$` to add a new column as you have more control over the
+position that it will be added in, while when using `$` the new column
+is always added in the rightmost position. We will cover how to use
+`cbind()` to add columns in the middle of a data frame when we get to
 square brackets.
+
+``` r
+cbind(my_df, "new_column"=NA) #This adds it on the right
+cbind("new_column"=NA, my_df) #This adds it on the left
+```
 
 But what if you don’t want to add a new column, but a new row instead?
 There is another function, naturally named `rbind()`, that does just
@@ -393,7 +441,7 @@ function with no arguments produces a data frame with zero rows and zero
 columns, which seems odd but you can still add data to it later to give
 it a defined size. This will be helpful when working with loops. Each
 argument of `data.frame()` is a column vector, which you can assign a
-name to. The syntax for doing so looks like this:
+name to. The syntax for doing so is the same as with `cbind()`:
 
 ``` r
 my_df <- data.frame("variable_1"=vector1, "variable_2"=vector2, "variable_3"=vector3)
@@ -413,7 +461,7 @@ In one dimension, the square brackets are used to reference a single
 entry of a vector. Unlike in standard programming languages, the indices
 of vectors start at 1 rather than 0. You also can’t use negative indices
 to reference entries starting from the end (for example, in Python
-`L[-1]` would return the last entry of a list `L`). In R, putting the
+`l[-1]` would return the last entry of a list `l`). In R, putting the
 minus sign `-` in front of an index does something rather different: it
 actually drops that entry from the vector, although it doesn’t edit the
 original. It makes a copy of it without that entry, which it won’t save
@@ -425,12 +473,13 @@ my_vector <- my_vector[-1]
 ```
 
 You can reference multiple entries of a vector by putting a vector of
-their indices inside the square brackets. You can define these using
-`c()`, the `:` operator, or any other method you like. Both lines below
-produce the same result:
+their indices inside the square brackets. If these indices are “out of
+order”, the output will be too. You can define these using `c()`, the
+`:` operator, or any other method you like. Both lines below produce the
+same result:
 
 ``` r
-my_vector[c(1,2,3)]
+my_vector[c(1, 2, 3)]
 my_vector[1:3]
 ```
 
@@ -460,20 +509,28 @@ my_df[,1]
 ```
 
 Of course, you can also use the minus sign `-` to quickly drop rows or
-columns that you don’t need.
+columns that you don’t need. If you want to insert a column into the
+middle of a data frame, you can do something like this:
+
+``` r
+my_df <- cbind(my_df[,1:5], "new_column"=NA, my_df[,6:10])
+```
 
 Another thing you can use square brackets to do easily is renaming
 variables. There is a function called `names()` that, when applied to a
-matrix or data frame, returns a vector containing all the column names
-in order. To rename, say, the 10th column, all you have to do is type
-the following:
+data frame, returns a vector containing all the column names in order.
+To rename, say, the 10th column, all you have to do is type the
+following:
 
 ``` r
 names(my_df)[10] <- "better_name"
 ```
 
-There is also a `rownames()` function, which is less useful but can
-still help sometimes.
+A slight inconsistency: `names()` does not work how you might expect it
+to when the argument is a matrix rather than a data frame - in that
+case, it returns the name of each individual element. When working with
+matrices, use `colnames()` instead, and its counterpart `rownames()`.
+Both of these functions also work with data frames.
 
 ## 1.12: Logical operators
 
@@ -510,11 +567,11 @@ Let’s not use my_vector to illustrate this, because its positions and
 values are the same.
 
 ``` r
-my_fancy_vector <- c(4,2,0,6,9)
-which(my_fancy_vector>3)
+my_fancy_vector <- c(3, 1, 2, 2, 1, 1)
+which(my_fancy_vector>1)
 ```
 
-    ## [1] 1 4 5
+    ## [1] 1 3 4
 
 Other useful logical functions include `is.na()`, which tells you the
 positions of any values that are missing, and `is.finite()`, which tells
@@ -543,7 +600,10 @@ you some space.
 Like in standard programming languages, R’s control flow primarily uses
 **if** statements and **loops**. As we have seen, loops are not needed
 for simple vector operations in R even though they would be in other
-languages, but that does not mean R loops are not useful.
+languages, but that does not mean R loops are not useful. However,
+experienced R coders tend to use loops quite sparingly: if you find
+yourself writing a lot of them, be aware that you are “speaking R with a
+strong C accent”.
 
 The basic syntax is the same for all control flow commands. It consists
 of the command, followed by a statement in brackets that determines the
@@ -570,9 +630,11 @@ make multiple-choice if statements is by chaining the else clause into
 another if statement. There is no direct equivalent of Python’s `elif`.
 
 ``` r
-if(x==1) print("The value of x is 1.")
-else if(x==0) print("The value of x is 0.")
-else print("x is not a binary variable.")
+if(x==1){
+  print("The value of x is 1.")
+} else if(x==0){
+  print("The value of x is 0.")
+} else print("x is not a binary variable.")
 ```
 
 R also has a function called `ifelse()` that is designed to replace very
@@ -580,13 +642,16 @@ simple if-else statements for which writing them out in full would be
 cumbersome. This function has three arguments: the first is a logical
 statement, the second is what the function will output if that statement
 is `TRUE`, and the third is the output if that statement is `FALSE`. In
-effect, the two lines below are the same:
+effect, the two lines below are (almost) the same:
 
 ``` r
 ifelse(condition, "Yes", "No")
 
-if(condition) print("Yes") else print("No")
+if(condition) "Yes" else "No"
 ```
+
+There are some very subtle differences between how these two statements
+work which we will cover in the appendix.
 
 Loops are similar to if statements, only instead of evaluating their
 condition once they do it multiple times in succession. There are three
@@ -601,9 +666,7 @@ loop:
 
 ``` r
 for(i in 0:9){
-  if(x==i){
-    print(str_glue("The value of x is {i}."))
-  }
+  if(x==i) str_glue("The value of x is {i}.")
 }
 ```
 
@@ -624,15 +687,15 @@ at some point you will need to write your own. Writing functions can
 save time, as you can call a function anywhere in your code without
 having to write a complicated expression in full again. Function
 definitions use a similar syntax to control flow statements, but they
-must be assigned a name like variables. If you’re used to a language
-like C++ or Python, R’s function definitions have a syntax which is more
+can be assigned a name like variables. If you’re used to a language like
+C++ or Python, R’s function definitions have a syntax which is more
 similar to lambda expressions than the basic function definitions in
 those languages. The structure of a function definition in R looks like
 this:
 
 ``` r
 my_function <- function(args){
-  body
+  #body
 }
 ```
 
@@ -650,7 +713,7 @@ does not automatically turn its argument into a string.
 
 ``` r
 loop_function <- function(n){
-  for(i in 1:n){print(i)}
+  for(i in 1:n) print(i)
 }
 ```
 
@@ -667,12 +730,32 @@ R has an inbuilt method for helping with unfamiliar code. If you ever
 see a function you don’t recognise or understand, you can type `?`
 followed by the function name in the console and R will automatically
 open the help page for that function. Built-in functions will (usually)
-have very thorough documentation, but due to R’s open-source nature if
-you are using specialised packages you are at the mercy of how dense or
-sparse the author’s explanation is. In cases where the official
-documentation is not enough, you can do the classic moves of either
-resorting to StackOverflow or asking an AI to explain it to you, but I
-believe the best course of action is always to play around with the code
-until you figure it out. If you are careful not to overwrite your
-existing data, messing up won’t cost you much other than your time. Good
-luck!
+have very thorough documentation, but if you are using specialised
+packages you are at the mercy of how dense or sparse the author’s
+explanation is. In cases where the official documentation is not enough,
+you can do the classic moves of either resorting to StackOverflow or
+asking an AI to explain it to you, but I believe the best course of
+action is always to play around with the code until you figure it out.
+If you are careful not to overwrite your existing data, messing up won’t
+cost you much other than your time.
+
+The opposite problem, when you want to do something but don’t know the
+right function for it, is harder to deal with. R is strictly
+case-sensitive, which wouldn’t be so bad if it wasn’t for the fact that
+in base R there isn’t any consistent style for function names (some
+start with capital letters, some are in camelCase, some have
+underscores, some have dots, and so on). If you have a decent idea of
+what the function you want is called but can’t remember the exact name,
+you can type `??` followed by a search string to bring up a list of all
+help pages that contain it, or just type it in the search bar and press
+Enter. You can also use the `apropos()` function to get a list of all
+functions that are currently loaded in your environment and contain a
+certain string (or match a regular expression, which is outside the
+scope of this sheet).
+
+If you have no idea at all what the function you want is called, you are
+in a real bind. Personally, I’ve found that the best way to learn about
+new functions that might be useful to you is to read other people’s code
+(and before you ask, ChatGPT doesn’t count as a person). Due to the
+open-source and collaborative nature of R it has a large and thriving
+community, so there’s no way you won’t find any. Good luck!
