@@ -7,7 +7,7 @@ During the _guided_ sessions someone from the group introduces a new tool or top
 
 | Session | Date | Background | Worksheets |
 | :---         | :---           | :--- | :--- |
-| Data visualisation with base R and ggplot2 | 2025-10-23 | > [YaRrr! Chapter 11: Plotting (I)](https://bookdown.org/ndphillips/YaRrr/plotting1.html) <br/> > [ggplot2 documentation](https://ggplot2.tidyverse.org/) | > [Reference script](exercises/01-exercises.md) <br/> > [Demo examples](exercises/01-solutions.md) |
+| Data visualisation with base R and ggplot2 | 2025-10-23 | > [YaRrr! Chapter 11: Plotting (I)](https://bookdown.org/ndphillips/YaRrr/plotting1.html) <br/> > [ggplot2 documentation](https://ggplot2.tidyverse.org/) | > [Reference script](resources/datavis.R) <br/> > [Demo examples (base R)](resources/datavisexamples.R) |
 | TBC | 2025-11-06? | > TBC <br/> > TBC | > Reference script <br/> > Demo examples |
 | TBC | 2025-11-20? | > TBC <br/> > TBC | > Reference script <br/> > Demo examples |
 | TBC | 2025-12-04? | > TBC <br/> > TBC | > Reference script <br/> > Demo examples |
