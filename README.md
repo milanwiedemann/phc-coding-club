@@ -1,6 +1,6 @@
 # PHC Coding Club
 
-We aim to organise Coding Clubs weekly, with alternating guided (_Guided Coding Club_, for details see schedule below) and open (_Open Coding Club_) sessions.
+We aim to organise Coding Clubs fortnightly. At first all sessions will be guided (_Guided Coding Club_, for details see schedule below), but as time goes by we will mix in some open (_Open Coding Club_) sessions.
 During the _guided_ sessions someone from the group introduces a new tool or topic and during the _open_ sessions we discuss the previous sessions or just code together on our own projects.
 
 ## Guided sessions
