@@ -20,7 +20,12 @@ During the _guided_ sessions someone from the group introduces a new tool or top
   - [psyTeachR](https://psyteachr.github.io/resources.html): Resources for teaching reproducible research using R from the psyTeachR team at the University of Glasgow
   - [Software development skills for health data researchers](https://informatics.bmj.com/content/29/1/e100488): Short introduction to software development skill (e.g., version control, testing, code review, ...) for researchers
   - [Software Carpentry](https://software-carpentry.org/lessons/index.html): Beginner friendly workshops for researchers, e.g., [R for Reproducible Scientific Analysis](https://swcarpentry.github.io/r-novice-gapminder/) or [Version Control with Git](https://swcarpentry.github.io/git-novice/)
+  - [YaRrr! The Pirate's Guide to R](https://bookdown.org/ndphillips/YaRrr/)
+  - [R Programming for Statistics and Data Science](https://www.oreilly.com/videos/r-programming-for/9781789950298/): Online video course available for free to Oxford members
+  - [Impatient R](https://www.burns-stat.com/documents/tutorials/impatient-r/)
 
 - **For more experienced coders:**
   - [Advanced R (2e)](https://adv-r.hadley.nz/)
   - [R Packages (2e)](https://r-pkgs.org/)
+  - [The R Inferno](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf)
+  - [General programming challenges](https://old.reddit.com/r/dailyprogrammer/)
