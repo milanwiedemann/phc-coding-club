@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 - José Boue: <jose.boue@phc.ox.ac.uk>
 - Nava Gottlieb: <nava.gottlieb@phc.ox.ac.uk>
-- Jess Schiff: <jessica.schiff@kellogg.ox.ac.uk>
+- Jess Schiff: <jessica.schiff@phc.ox.ac.uk>
 - Milan Wiedemann: <milan.wiedemann@phc.ox.ac.uk>
 
 ## What are these sessions for?
@@ -86,4 +86,5 @@ cuboid <- function(w, h, d){
 }
 
 cuboid(2,3,4)
+
 ```
