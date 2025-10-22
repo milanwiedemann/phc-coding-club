@@ -1,6 +1,66 @@
 #Data visualisation with base R and ggplot2 ####
 
-#This script is intended to be a modular resource:
+#The first part of this script is a straightforward demo you can follow along with
+
+#Loading data ####
+setwd("~/R Club/") #Replace this with your own directory path
+london <- read.csv("lndn_obs.csv")
+#Alternatively:
+library(here)
+london <- read.csv(here("lndn_obs.csv"))
+
+#Preview the data before you start plotting ####
+str(london)
+head(london)
+summary(london)
+
+#Plotting with base R ####
+#Univariate plot - histogram of mean temperature
+hist(london$tmean)
+
+#Grouped plot - box plot of mean temperature by day of the week
+boxplot(tmean ~ dow, data = london)
+
+#Bivariate plot - daily deaths vs mean temperature
+with(london, plot(tmean, all))
+#What if we want to add a regression line?
+fit <- lm(all ~ tmean, data = london)
+abline(fit, col="red")
+#Nice! Better check the assumptions of linear regression are satisfied...
+plot(fit$residuals, fit$fitted.values)
+qqnorm(fit$residuals)
+qqline(fit$residuals)
+hist(fit$residuals)
+
+#Plotting with ggplot2 ####
+#Initialisation
+library(ggplot2)
+init <- ggplot(london)
+
+#Histogram
+init + geom_histogram(aes(x = tmean))
+
+#Box plots
+init + geom_boxplot(aes(group = dow, y = tmean))
+#How about violin plots instead?
+init + geom_violin(aes(x = dow, y = tmean))
+
+#Scatterplot and regression (all in one line!)
+init + geom_point(aes(x = tmean, y = all)) + geom_smooth(aes(x = tmean, y = all), method = "lm")
+#To test assumptions we'll need to initialise again
+fit_df <- data.frame("resid" = fit$residuals, "fitted" = fit$fitted.values)
+init_fit <- ggplot(fit_df)
+init_fit + geom_point(aes(x = resid, y = fitted))
+#This uses the normal distribution by default, but you can change it
+init_fit + geom_qq(aes(sample = resid))
+init_fit + geom_histogram(aes(x = resid))
+
+#Something silly that ggplot2 lets you do
+init + geom_histogram(aes(x = tmean)) + coord_polar()
+
+#Now try this yourself with chicago.csv
+
+#The rest of this script is intended to be a modular resource:
 #Code is not provided as discrete blocks that you can copy wholesale;
 #Instead, it's mostly individual lines that you can combine as you see fit
 
