@@ -25,7 +25,7 @@ boxplot(tmean ~ dow, data = london)
 with(london, plot(tmean, all))
 #What if we want to add a regression line?
 fit <- lm(all ~ tmean, data = london)
-abline(fit, col="red")
+abline(fit, col = "red")
 #Nice! Better check the assumptions of linear regression are satisfied...
 plot(fit$residuals, fit$fitted.values)
 qqnorm(fit$residuals)
@@ -275,3 +275,4 @@ f + theme_minimal()
 #Saving the last plot you drew
 library(here)
 ggsave(filename = here("my_graphic.png"))
+
