@@ -1,0 +1,90 @@
+---
+title: "R Club Introduction"
+author: "José Boue"
+date: "2025-10-23"
+output: 
+  powerpoint_presentation:
+    reference_doc: Shapes.pptx
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introducing the Team
+
+- José Boue: <jose.boue@phc.ox.ac.uk>
+- Nava Gottlieb: <nava.gottlieb@phc.ox.ac.uk>
+- Jess Schiff: <jessica.schiff@phc.ox.ac.uk>
+- Milan Wiedemann: <milan.wiedemann@phc.ox.ac.uk>
+
+## What are these sessions for?
+
+- Our background research indicated that a lot of you use R...
+
+- But the number of people who say they are competent with it is much lower.
+
+- We want to fix this, the old-fashioned way (no AI here!)
+
+- Unlike the existing R resources here, our sessions are highly targeted.
+
+- We also believe that learning new things is easier when it's collaborative.
+
+## How confident with R are you?
+
+```{r confdiagram}
+conf <- read.csv(here::here("confidence.csv"))
+hist(conf$confidence, main = NA, col = "lightblue", xlab = "Confidence")
+```
+
+## Introduction to GitHub
+
+- We (the team) use GitHub for collaboratively planning and designing these sessions.
+
+- Therefore, that's where you will find all the resources you need.
+
+- You can access our repository here: <https://github.com/milanwiedemann/phc-coding-club>
+
+- Make sure to scroll down far enough to see the README file!
+
+## Demo 1: Plasma effect
+
+```{r plasma}
+plasma <- function(x, y) sin(x / 2) + sin(y) + sin((x + y) / 2) + sin(sqrt(x ^ 2 + y ^ 2))
+x <- y <- seq(-4 * pi, 4 * pi, length.out = 1000)
+bigmat <- outer(x, y, plasma)
+image(bigmat, col = hcl.colors(12, "Plasma"), axes = FALSE)
+```
+
+## Demo 2: Cuboid
+
+```{r background}
+cuboid <- function(w, h, d){
+  plot(x = NA,
+       xlim = c(0, (w + d) * sqrt(3) / 2),
+       ylim = c(0, h + (w + d) / 2),
+       xlab = NA,
+       ylab = NA,
+       asp = 1,
+       axes = FALSE)
+  
+  polygon(x = c(0, w * sqrt(3) / 2, w * sqrt(3) / 2, 0), 
+          y = c(w / 2, 0, h, h + w / 2), 
+          col = "red")
+  
+  polygon(x = c(0, w * sqrt(3) / 2, (w + d) * sqrt(3) / 2, d * sqrt(3) / 2), 
+          y = c(h + w / 2, h, h + d / 2, h + (w + d) / 2), 
+          col = "blue")
+  
+  polygon(x = c(w * sqrt(3) / 2,
+                (w + d) * sqrt(3) / 2,
+                (w + d) * sqrt(3) / 2,
+                w * sqrt(3) / 2), 
+          
+          y = c(0, d / 2, h + d / 2, h), 
+          col = "yellow")
+}
+
+cuboid(2,3,4)
+
+```
