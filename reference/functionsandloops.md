@@ -1,14 +1,14 @@
 R workshop 2: Functions and loops
 ================
 José Boue
-2025-11-11
+2025-11-12
 
-- [1.1: Introduction](#11-introduction)
-- [1.2: Functions](#12-functions)
-- [1.3: Loops](#13-loops)
-- [1.4 Over to you…](#14-over-to-you)
+- [2.1: Introduction](#21-introduction)
+- [2.2: Functions](#22-functions)
+- [2.3: Loops](#23-loops)
+- [2.4 Over to you…](#24-over-to-you)
 
-## 1.1: Introduction
+## 2.1: Introduction
 
 Whether you are new to R or already have some experience with it, you
 have probably been frustrated by writing code. One of the most common
@@ -20,7 +20,7 @@ time-consuming and repetitive for humans to do by hand, so if you always
 had to write everything out in full that would defeat the point. Two of
 the simplest ways to deal with this problem are functions and loops.
 
-## 1.2: Functions
+## 2.2: Functions
 
 R and its packages have many functions that can do almost anything, but
 at some point you will need to write your own (functions, not
@@ -119,7 +119,7 @@ You can also make functions that have default values for certain
 arguments or even accept a variable number of arguments, but this is
 outside the scope of this session.
 
-## 1.3: Loops
+## 2.3: Loops
 
 If you’ve used another programming language before (a real one, Stata
 doesn’t count), you are sure to know what loops are. If not, we’ll
@@ -209,9 +209,10 @@ A **repeat** loop is identical to a while loop, but with no condition:
 the only way to terminate it is by manually breaking it. You can achieve
 the same effect as a repeat loop by writing `while(TRUE)`.
 
-## 1.4 Over to you…
+## 2.4 Over to you…
 
 If you are comfortable with the explanations shown above and in any
 other resources you’ve had a look at, feel free to move on to the
-exercises for this session which can be found in the GitHub repository.
-Happy coding!
+exercises for this session. They are located elsewhere in the GitHub
+repository, and can be found by clicking the relevant link in the README
+file. Happy coding!
