@@ -8,7 +8,7 @@ During the _guided_ sessions someone from the group introduces a new tool or top
 | Session | Date | Background | Homework |
 | :---         | :---           | :--- | :--- |
 | Data visualisation with base R and ggplot2 | 2025-10-23 | > [YaRrr! Chapter 11: Plotting (I)](https://bookdown.org/ndphillips/YaRrr/plotting1.html) <br/> > [ggplot2 documentation](https://ggplot2.tidyverse.org/) | > Exercises 1 <br/> > Solutions 1 |
-| Functions and loops | 2025-12-09 | > [Reference sheet](reference/functionsandloops.md) <br/> > [YaRrr! Chapter 16: Custom functions](https://bookdown.org/ndphillips/YaRrr/functions.html) | > Exercises 2 <br/> > Solutions 2 |
+| Functions and loops | 2025-12-09 | > [Reference sheet](reference/functionsandloops.md) <br/> > [YaRrr! Chapter 16: Custom functions](https://bookdown.org/ndphillips/YaRrr/functions.html) | > [Exercises 2](exercises/02-exercises-2025.md) <br/> > Solutions 2 |
 | TBC | 2026-01-?? | > TBC <br/> > TBC | > Exercises 3 <br/> > Solutions 3 |
 | TBC | 2026-??-?? | > TBC <br/> > TBC | > Exercises 4 <br/> > Solutions 4 |
 
