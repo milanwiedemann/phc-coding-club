@@ -18,7 +18,7 @@
 
 * Exercise 7: Write a for loop that concatenates numbers 1 to 5 with a user specified prefix or suffix e.g., `idea_1`, `idea_2`, `idea_3` ...
 
-* Exercise 7.5 (harder): Do the previous exercise without using a loop. Hint: paste0() is a vectorised function.
+* Exercise 7.5 (harder): Do the previous exercise without using a loop. Hint: `paste0()` is a vectorised function.
 
 * Exercise 8 (harder): Use a while loop to simulate throwing two six-sided dice, and stop when you roll a double six. If you want a challenge, record how many throws it took. Hint: use the `sample()` function.
 
