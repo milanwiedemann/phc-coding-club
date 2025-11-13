@@ -119,6 +119,7 @@ This code is designed to take a positive integer n and decrement it by 1 repeate
 
 A **repeat** loop is identical to a while loop, but with no condition: the only way to terminate it is by manually breaking it. You can achieve the same effect as a repeat loop by writing `while(TRUE)`.
 
-## 2.4 Over to you...
+## 2.4: Over to you...
+
 
 If you are comfortable with the explanations shown above and in any other resources you've had a look at, feel free to move on to the exercises for this session. They are located elsewhere in the GitHub repository, and can be found by clicking the relevant link in the README file. Happy coding!
