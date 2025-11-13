@@ -1,6 +1,6 @@
 # PHC Coding Club
 
-We aim to organise Coding Clubs fortnightly. At first all sessions will be guided (_Guided Coding Club_, for details see schedule below), but as time goes by we will mix in some open (_Open Coding Club_) sessions.
+We aim to organise Coding Clubs fortnightly, although sometimes our schedule may slip a little around holiday times. At first all sessions will be guided (_Guided Coding Club_, for details see schedule below), but as time goes by we will mix in some open (_Open Coding Club_) sessions.
 During the _guided_ sessions someone from the group introduces a new tool or topic and during the _open_ sessions we discuss the previous sessions or just code together on our own projects.
 
 ## Guided sessions
@@ -8,9 +8,9 @@ During the _guided_ sessions someone from the group introduces a new tool or top
 | Session | Date | Background | Homework |
 | :---         | :---           | :--- | :--- |
 | Data visualisation with base R and ggplot2 | 2025-10-23 | > [YaRrr! Chapter 11: Plotting (I)](https://bookdown.org/ndphillips/YaRrr/plotting1.html) <br/> > [ggplot2 documentation](https://ggplot2.tidyverse.org/) | > Exercises 1 <br/> > Solutions 1 |
-| TBC | 2025-11-06? | > TBC <br/> > TBC | > Exercises 2 <br/> > Solutions 2 |
-| TBC | 2025-11-20? | > TBC <br/> > TBC | > Exercises 3 <br/> > Solutions 3 |
-| TBC | 2025-12-04? | > TBC <br/> > TBC | > Exercises 4 <br/> > Solutions 4 |
+| Functions and loops | 2025-12-09 | > [Reference sheet](reference/functionsandloops.md) <br/> > [YaRrr! Chapter 16: Custom functions](https://bookdown.org/ndphillips/YaRrr/functions.html) | > [Exercises 2](exercises/02-exercises-2025.md) <br/> > Solutions 2 |
+| TBC | 2026-01-?? | > TBC <br/> > TBC | > Exercises 3 <br/> > Solutions 3 |
+| TBC | 2026-??-?? | > TBC <br/> > TBC | > Exercises 4 <br/> > Solutions 4 |
 
 ## Guided sessions (old)
 
