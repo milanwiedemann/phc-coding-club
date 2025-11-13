@@ -6,7 +6,7 @@ José Boue
 - [2.1: Introduction](#21-introduction)
 - [2.2: Functions](#22-functions)
 - [2.3: Loops](#23-loops)
-- [2.4 Over to you…](#24-over-to-you)
+- [2.4: Over to you…](#24-over-to-you)
 
 ## 2.1: Introduction
 
@@ -209,10 +209,11 @@ A **repeat** loop is identical to a while loop, but with no condition:
 the only way to terminate it is by manually breaking it. You can achieve
 the same effect as a repeat loop by writing `while(TRUE)`.
 
-## 2.4 Over to you…
+## 2.4: Over to you…
 
 If you are comfortable with the explanations shown above and in any
 other resources you’ve had a look at, feel free to move on to the
 exercises for this session. They are located elsewhere in the GitHub
 repository, and can be found by clicking the relevant link in the README
 file. Happy coding!
+
