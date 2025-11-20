@@ -7,31 +7,22 @@ During the _guided_ sessions someone from the group introduces a new tool or top
 
 | Session | Date | Background | Homework |
 | :---         | :---           | :--- | :--- |
-| Data visualisation with base R and ggplot2 | 2025-10-23 | > [YaRrr! Chapter 11: Plotting (I)](https://bookdown.org/ndphillips/YaRrr/plotting1.html) <br/> > [ggplot2 documentation](https://ggplot2.tidyverse.org/) | > Exercises 1 <br/> > Solutions 1 |
-| Functions and loops | 2025-12-09 | > [Reference sheet](reference/functionsandloops.md) <br/> > [YaRrr! Chapter 16: Custom functions](https://bookdown.org/ndphillips/YaRrr/functions.html) | > [Exercises 2](exercises/02-exercises-2025.md) <br/> > Solutions 2 |
-| TBC | 2026-01-?? | > TBC <br/> > TBC | > Exercises 3 <br/> > Solutions 3 |
-| TBC | 2026-??-?? | > TBC <br/> > TBC | > Exercises 4 <br/> > Solutions 4 |
-
-## Guided sessions (old)
-
-| Session | Date | Background | Homework |
-| :---         | :---           | :--- | :--- |
-| Project-oriented workflow | 2024-01-18 | > [Workflow: scripts and projects](https://r4ds.hadley.nz/workflow-scripts.html#projects) <br/> > [Project-oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) | > [Exercises 1](exercises/01-exercises.md) <br/> > [Solutions 1](exercises/01-solutions.md) |
-| GitHub for academic research | 2024-02-15 | > [Happy Git and GitHub](https://happygitwithr.com/) <br/> > [Oh Shit, Git!?!](https://ohshitgit.com/) | > [Exercises 2](exercises/02-exercises.md) <br/> > Solutions 2 |
-| Functions and loops | 2024-03-14 | > [Functions](https://r4ds.hadley.nz/functions) <br/> > [Iteration & Functions](https://psyteachr.github.io/reprores-v3/func.html) | > [Exercises 3](exercises/03-exercises.md) <br/> > Solutions 3 |
-| Code review | TBC | > [Tidyteam code review](https://code-review.tidyverse.org/) <br/> > [Code Review](https://psyteachr.github.io/posts/2022-11-21_riots-code-review.html) | > Exercises 4 <br/> > Solutions 4 |
-
-## Optional pre-session reading
-
-If you are completely new to R or would like to quickly refresh your knowledge before attending your first session, we have prepared some resources for you.
-
-[Sheet 1: The Very Basics of R for Data Analysis](reference/Sheet1.md)
-
-[Sheet 1a: Basics of R (Appendices)](reference/Sheet1a.md)
-
-More of these to come!
+| **Michaelmas 2025** |
+| 1. Data visualisation | 2025-10-23 | > [YaRrr! Ch 11: Plotting](https://bookdown.org/ndphillips/YaRrr/plotting1.html) <br/> > [ggplot2 docs](https://ggplot2.tidyverse.org/) | > Exercises 1 <br/> > Solutions 1 |
+| 2. Functions and loops | 2025-12-09 | > [Reference sheet](reference/functionsandloops.md) <br/> > [YaRrr! Ch 16: Custom funs](https://bookdown.org/ndphillips/YaRrr/functions.html) | > [Exercises 2](exercises/02-exercises-2025.md) <br/> > Solutions 2 |
+| 3. TBC | 2026-01-DD | > TBC <br/> > TBC | > Exercises 3 <br/> > Solutions 3 |
+| 4. TBC | 2026-MM-DD | > TBC <br/> > TBC | > Exercises 4 <br/> > Solutions 4 |
+| **Hilary 2024** |
+| 1. Project-oriented workflow | 2024-01-18 | > [Workflow: scripts and projects](https://r4ds.hadley.nz/workflow-scripts.html#projects) <br/> > [Project-oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) | > [Exercises 1](exercises/01-exercises.md) <br/> > [Solutions 1](exercises/01-solutions.md) |
+| 2. GitHub for academic research | 2024-02-15 | > [Happy Git and GitHub](https://happygitwithr.com/) <br/> > [Oh Shit, Git!?!](https://ohshitgit.com/) | > [Exercises 2](exercises/02-exercises.md) <br/> > Solutions 2 |
+| 3. Functions and loops | 2024-03-14 | > [Functions](https://r4ds.hadley.nz/functions) <br/> > [Iteration & Functions](https://psyteachr.github.io/reprores-v3/func.html) | > [Exercises 3](exercises/03-exercises.md) <br/> > Solutions 3 |
+| 4. ~~Code review~~ | ~~TBC~~ | > [Tidyteam code review](https://code-review.tidyverse.org/) <br/> > [Code Review](https://psyteachr.github.io/posts/2022-11-21_riots-code-review.html) | > Exercises 4 <br/> > Solutions 4 |
 
 ## General resources
+
+- **Optional pre-reading:**
+  - [Sheet 1: The Very Basics of R for Data Analysis](reference/Sheet1.md)
+  - [Sheet 1a: Basics of R (Appendices)](reference/Sheet1a.md)
 
 - **For new coders:**
   - [Happy Git and GitHub for the useR](https://happygitwithr.com/) 
