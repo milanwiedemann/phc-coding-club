@@ -9,7 +9,7 @@ During the _guided_ sessions someone from the group introduces a new tool or top
 | :---         | :---           | :--- | :--- |
 | **Michaelmas 2025** |
 | 1. Data visualisation | 2025-10-23 | > [YaRrr! Ch 11: Plotting](https://bookdown.org/ndphillips/YaRrr/plotting1.html) <br/> > [ggplot2 docs](https://ggplot2.tidyverse.org/) | > Exercises 1 <br/> > Solutions 1 |
-| 2. Functions and loops | 2025-12-09 | > [Reference sheet](reference/functionsandloops.md) <br/> > [YaRrr! Ch 16: Custom funs](https://bookdown.org/ndphillips/YaRrr/functions.html) | > [Exercises 2](exercises/02-exercises-2025.md) <br/> > Solutions 2 |
+| 2. Functions and loops | 2025-12-09 | > [Reference sheet](reference/functionsandloops.md) <br/> > [YaRrr! Ch 16: Custom funs](https://bookdown.org/ndphillips/YaRrr/functions.html) | > [Exercises 2](exercises/02-exercises-2025.md) <br/> > [Solutions 2](exercises/02-solutions-2025.R) |
 | 3. TBC | 2026-01-DD | > TBC <br/> > TBC | > Exercises 3 <br/> > Solutions 3 |
 | 4. TBC | 2026-MM-DD | > TBC <br/> > TBC | > Exercises 4 <br/> > Solutions 4 |
 | **Hilary 2024** |
