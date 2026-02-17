@@ -1,6 +1,6 @@
 ---
 title: 'R workshop 3: Working with dates'
-date: "2026-02-06"
+date: "2026-02-17"
 output: 
   github_document:
     toc: TRUE
@@ -80,7 +80,7 @@ as.difftime(10, units = "days")/(1:5)
 The `seq()` function can create regular sequences of dates as well as numbers. The `seq()` method for dates has the same arguments as the one for numbers (`from`, `to`, `by`, `length.out`, and `along.with`), and they work mostly the same way. The one exception is `by`, which can be specified as a number (which will be assumed to be in days), or as a string which consists of an integer followed by one of "days", "weeks", "months", "quarters" or "years" (plural is optional). Let's say you have a recurring meeting which happens every two weeks starting a week from now, and you want a vector of all meeting dates from then until six months from now. You would do it like this:
 
 ```{r meetings}
-seq(from = Sys.Date()+7, to = Sys.Date()+6*31, by = "2 weeks")
+meetings <- seq(from = Sys.Date()+7, to = Sys.Date()+6*31, by = "2 weeks") |> print()
 ```
 
 Similarly, `cut()` can transform a vector of dates into a factor, but you need to specify a value for `breaks` the same way as for the `by` argument with `seq()`. To demonstrate this, we'll randomly generate a vector of 100 numbers, turn them into dates, and then bin them by year.
@@ -113,12 +113,36 @@ All dates from 1 AD onwards are assumed to be according to the Gregorian calenda
 as.Date(-1, origin = "0000-01-01")
 ```
 
-If a date format is not specified when using `as.Date()` on a string, R automatically parses it as either yyyy-mm-dd or yyyy/mm/dd. If it can't make the string fit either of these, it throws an error. This is not like Excel where the default parsing format is locale-specific, so it's much harder to accidentally input your dates "the wrong way around" in R. European and American collaborators can also share R files without risk of anything going wrong.
+If a date format is not specified when using `as.Date()` on a string, R automatically parses it as either yyyy-mm-dd or yyyy/mm/dd. If it can't make the string fit either of these, it throws an error. This is not like Excel where the default parsing format is locale-specific, so it's much harder to accidentally input your dates "the wrong way around" in R. European and American collaborators can also share R files without risk of anything going wrong. See how R handles an extremely ambiguous date (each number could be a day, a month, or a year):
 
 ```{r ambiguity}
-as.Date("1-2-3")
+as.Date("01-02-03")
 ```
 
-## 3.7: Over to you!
+## 3.7: Extracting date components with `lubridate` (and other things that package can do) 
+
+What if you have a date variable and want to extract only the day (of the month), month, or year from it? There are ways to do this in base R, but they are not particularly intuitive. It's best to use the package `lubridate`, which has three conveniently named functions called `day()`, `month()`, and `year()` that do exactly that. There are also `wday()` to extract the day of the week and `yday()` to extract the day of the year. One thing to note is that `year()` doesn't work with negative years.
+
+```{r lubridate}
+library(lubridate)
+day(meetings)
+```
+
+The extraction functions in `lubridate` can also be used for assignment. If you wanted to change the year in your vector of meetings from this year (2026) to next year (2027), you could do it like this:
+
+```{r dateassign}
+year(meetings) <- 2027
+meetings
+```
+
+`lubridate` also has its own methods for generating date variables from strings. `ymd()` is similar to R's ordinary behaviour for parsing dates, but there are five other functions that cover each possible permutation of day, month, and year. The main difference from base R date parsing is that these functions treat years less than 100 as abbreviations by default (choosing the most recent year in the past that fits). See how they handle the ambiguous date from before:
+
+```{r ambiguity2}
+as.Date(sapply(c(ymd, ydm, myd, mdy, dmy, dym), function(f) f("01-02-03")))
+```
+
+Another base R function that has a `lubridate` equivalent is `Sys.Date()`, which is the slightly easier to remember `today()`.
+
+## 3.8: Over to you!
 
 If you are comfortable with the explanations shown above and in any other resources you've had a look at, feel free to move on to the exercises for this session. They are located elsewhere in the GitHub repository, and can be found by clicking the relevant link in the README file. Happy coding!
