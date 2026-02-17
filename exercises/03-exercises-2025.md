@@ -6,7 +6,7 @@ These exercises will use the built-in R dataset `Orange`. This is a grouped data
 
 * Exercise 2: Try to add another column with the dates in a different format, using the `format()` function. What happens to the type of the variable when you do this?
 
-* Exercise 3: Write a command to show all measurements that were taken after the year 1971.
+* Exercise 3: Write a command to show all measurements that were taken after the year 1971. You may use base R or `lubridate` for this.
 
 * Exercise 4 (harder): Write a command that shows the tree with the largest circumference for each year (from 1969 to 1973). You may find it natural to do this using a loop, or as a function.
 
