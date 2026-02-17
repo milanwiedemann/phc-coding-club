@@ -1,6 +1,6 @@
 R workshop 3: Working with dates
 ================
-2026-02-06
+2026-02-17
 
 - [3.1: Introduction](#31-introduction)
 - [3.2: How does R store dates?](#32-how-does-r-store-dates)
@@ -8,7 +8,10 @@ R workshop 3: Working with dates
 - [3.4: Date arithmetic](#34-date-arithmetic)
 - [3.5: Date sequences and factors](#35-date-sequences-and-factors)
 - [3.6: Some technical stuff](#36-some-technical-stuff)
-- [3.7: Over to you!](#37-over-to-you)
+- [3.7: Extracting date components with `lubridate` (and other things
+  that package can
+  do)](#37-extracting-date-components-with-lubridate-and-other-things-that-package-can-do)
+- [3.8: Over to you!](#38-over-to-you)
 
 ## 3.1: Introduction
 
@@ -49,7 +52,7 @@ returns today’s date, according to your computer’s clock.
 Sys.Date() |> as.numeric()
 ```
 
-    ## [1] 20490
+    ## [1] 20501
 
 ``` r
 #What date was exactly 10000 days after American Independence Day?
@@ -150,7 +153,7 @@ as `sum()`, `mean()`, `abs()`, and `sign()`.
 Sys.Date() - as.Date("2000-01-01")
 ```
 
-    ## Time difference of 9533 days
+    ## Time difference of 9544 days
 
 ``` r
 #Difftimes aren't restricted to integer numbers of days
@@ -174,12 +177,12 @@ now, and you want a vector of all meeting dates from then until six
 months from now. You would do it like this:
 
 ``` r
-seq(from = Sys.Date()+7, to = Sys.Date()+6*31, by = "2 weeks")
+meetings <- seq(from = Sys.Date()+7, to = Sys.Date()+6*31, by = "2 weeks") |> print()
 ```
 
-    ##  [1] "2026-02-13" "2026-02-27" "2026-03-13" "2026-03-27" "2026-04-10"
-    ##  [6] "2026-04-24" "2026-05-08" "2026-05-22" "2026-06-05" "2026-06-19"
-    ## [11] "2026-07-03" "2026-07-17" "2026-07-31"
+    ##  [1] "2026-02-24" "2026-03-10" "2026-03-24" "2026-04-07" "2026-04-21"
+    ##  [6] "2026-05-05" "2026-05-19" "2026-06-02" "2026-06-16" "2026-06-30"
+    ## [11] "2026-07-14" "2026-07-28" "2026-08-11"
 
 Similarly, `cut()` can transform a vector of dates into a factor, but
 you need to specify a value for `breaks` the same way as for the `by`
@@ -191,7 +194,7 @@ rand_dates <- sample(10000, 100) |> as.Date()
 cut(rand_dates, breaks = "year") |> head()
 ```
 
-    ## [1] 1981-01-01 1990-01-01 1992-01-01 1988-01-01 1984-01-01 1992-01-01
+    ## [1] 1973-01-01 1989-01-01 1987-01-01 1987-01-01 1997-01-01 1995-01-01
     ## 28 Levels: 1970-01-01 1971-01-01 1972-01-01 1973-01-01 ... 1997-01-01
 
 We can also visualise date data with a histogram. `hist()` will accept a
@@ -245,15 +248,75 @@ make the string fit either of these, it throws an error. This is not
 like Excel where the default parsing format is locale-specific, so it’s
 much harder to accidentally input your dates “the wrong way around” in
 R. European and American collaborators can also share R files without
-risk of anything going wrong.
+risk of anything going wrong. See how R handles an extremely ambiguous
+date (each number could be a day, a month, or a year):
 
 ``` r
-as.Date("1-2-3")
+as.Date("01-02-03")
 ```
 
     ## [1] "0001-02-03"
 
-## 3.7: Over to you!
+## 3.7: Extracting date components with `lubridate` (and other things that package can do)
+
+What if you have a date variable and want to extract only the day (of
+the month), month, or year from it? There are ways to do this in base R,
+but they are not particularly intuitive. It’s best to use the package
+`lubridate`, which has three conveniently named functions called
+`day()`, `month()`, and `year()` that do exactly that. There are also
+`wday()` to extract the day of the week and `yday()` to extract the day
+of the year. One thing to note is that `year()` doesn’t work with
+negative years.
+
+``` r
+library(lubridate)
+```
+
+    ## 
+    ## Attaching package: 'lubridate'
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     date, intersect, setdiff, union
+
+``` r
+day(meetings)
+```
+
+    ##  [1] 24 10 24  7 21  5 19  2 16 30 14 28 11
+
+The extraction functions in `lubridate` can also be used for assignment.
+If you wanted to change the year in your vector of meetings from this
+year (2026) to next year (2027), you could do it like this:
+
+``` r
+year(meetings) <- 2027
+meetings
+```
+
+    ##  [1] "2027-02-24" "2027-03-10" "2027-03-24" "2027-04-07" "2027-04-21"
+    ##  [6] "2027-05-05" "2027-05-19" "2027-06-02" "2027-06-16" "2027-06-30"
+    ## [11] "2027-07-14" "2027-07-28" "2027-08-11"
+
+`lubridate` also has its own methods for generating date variables from
+strings. `ymd()` is similar to R’s ordinary behaviour for parsing dates,
+but there are five other functions that cover each possible permutation
+of day, month, and year. The main difference from base R date parsing is
+that these functions treat years less than 100 as abbreviations by
+default (choosing the most recent year in the past that fits). See how
+they handle the ambiguous date from before:
+
+``` r
+as.Date(sapply(c(ymd, ydm, myd, mdy, dmy, dym), function(f) f("01-02-03")))
+```
+
+    ## [1] "2001-02-03" "2001-03-02" "2002-01-03" "2003-01-02" "2003-02-01"
+    ## [6] "2002-03-01"
+
+Another base R function that has a `lubridate` equivalent is
+`Sys.Date()`, which is the slightly easier to remember `today()`.
+
+## 3.8: Over to you!
 
 If you are comfortable with the explanations shown above and in any
 other resources you’ve had a look at, feel free to move on to the
